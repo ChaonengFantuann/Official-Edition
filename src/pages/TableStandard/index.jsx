@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRequest } from 'umi';
-import { Table, Pagination, Row, Col } from "antd";
+import { Table, Pagination, Row, Col, Space, Card } from "antd";
 import { PageContainer } from "@ant-design/pro-layout";
-import ColumnBuilder from './components/ColumnBuilder';
+import SearchBuiler from './components/SearchBuilder';
+import ColumnBuilder from '@/utils/ColumnBuilder';
+import ActionBuilder from '@/utils/ActionBuilder';
 import styles from "./index.less";
 
 
@@ -15,19 +17,45 @@ const TableStandard = () => {
 
   useEffect(() => {
     init.run();
-  }, [pageQuery])
+  }, [pageQuery]);
 
   const paginationChangeHandler = (page, per_page) => {
     // console.log(page, perpage);
     setPageQuery(`&page=${page}&per_page=${per_page}`);
-  }
+  };
+
+  const searchLayout = () => {
+    return (
+      <Row>
+        <Col sm={18}>
+          <Row gutter={24}>
+            {SearchBuiler(init.data?.layout.searchToolbar.data)}
+          </Row>
+        </Col>
+        <Col sm={6}>
+          <Space>
+            {ActionBuilder(init.data?.layout.searchToolbar.actions)}
+          </Space>
+        </Col>
+
+      </Row>
+    );
+  };
+  const beforeTableLayout = () => {
+    // console.log(init);
+    return (
+      <Space className={styles.pagination}>
+        {ActionBuilder(init.data?.layout.tableToolbar)}
+      </Space>
+    );
+  };
 
   const afterTableLayout = () => {
     return (
       <Row>
         <Col xs={24} sm={12}>
         </Col>
-        <Col xs={24} sm={12} className={styles.tableToolbar}>
+        <Col xs={24} sm={12} className={styles.pagination}>
           <Pagination
             total={init?.data?.meta?.total || 0}
             current={init?.data?.meta?.page || 1}
@@ -44,13 +72,17 @@ const TableStandard = () => {
 
   return (
     <PageContainer>
-      <Table
-        dataSource={init.data?.dataSource}
-        columns={ColumnBuilder(init.data?.layout.tableColumn)}
-        pagination={false}
-        loading={init.loading}
-      />
-      {afterTableLayout()}
+      <Card>
+        {searchLayout()}
+        {beforeTableLayout()}
+        <Table
+          dataSource={init.data?.dataSource}
+          columns={ColumnBuilder(init.data?.layout.tableColumn)}
+          pagination={false}
+          loading={init.loading}
+        />
+        {afterTableLayout()}
+      </Card>
     </PageContainer>
   );
 };

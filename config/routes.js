@@ -61,6 +61,24 @@ export default [
     component: './FormBasic',
   },
   {
+    name: 'form.form-senior',
+    icon: 'form',
+    path: '/from-senior',
+    component: './FormSenior',
+  },
+  {
+    name: 'result.result.success',
+    icon: 'smile',
+    path: '/result-success',
+    component: './ResultSuccess',
+  },
+  {
+    name: 'result.result.fail',
+    icon: 'smile',
+    path: '/result-fail',
+    component: './ResultFail',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

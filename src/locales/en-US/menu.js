@@ -51,4 +51,7 @@ export default {
   'menu.editor.koni': 'Koni Editor',
   'menu.table.table-sta': 'Standard Table',
   'menu.form.form-basic': 'Basic Form',
+  'menu.form.form-senior': 'Senior Form',
+  'menu.result.result.success': 'Submit Success',
+  'menu.result.result.fail': 'Submit Fail',
 };

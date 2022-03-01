@@ -50,6 +50,9 @@ export default {
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
   //以下为自定义国际化
-  'menu.table.table-sta': '标准表格', 
+  'menu.table.table-sta': '标准表格',
   'menu.form.form-basic': '基础表单',
+  'menu.form.form-senior': '高级表单',
+  'menu.result.result.success': '提交成功',
+  'menu.result.result.fail': '提交失败',
 };

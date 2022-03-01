@@ -13,7 +13,7 @@ const FormBasic = () => {
   return (
     <PageContainer>
       <Form>
-        <Card>
+        <Card loading={init.loading}>
           <Row>
             <Col sm={6} />
             <Col sm={12}>

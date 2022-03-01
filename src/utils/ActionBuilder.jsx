@@ -8,6 +8,7 @@ const ActionBuilder = (
   ) => {
   return (action || []).map((action) => {
     if(action.component === 'button') {
+      // console.log('aaa');
       return (
         <Button 
           key={action.text} 
