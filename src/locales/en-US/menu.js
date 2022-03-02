@@ -54,4 +54,5 @@ export default {
   'menu.form.form-senior': 'Senior Form',
   'menu.result.result.success': 'Submit Success',
   'menu.result.result.fail': 'Submit Fail',
+  'menu.list.product-list': 'Product List',
 };

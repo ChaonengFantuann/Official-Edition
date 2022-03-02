@@ -79,6 +79,12 @@ export default [
     component: './ResultFail',
   },
   {
+    name: 'list.product-list',
+    icon: 'table',
+    path: '/product-list',
+    component: './ProductList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

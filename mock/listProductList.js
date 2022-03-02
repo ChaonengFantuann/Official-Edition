@@ -1,39 +1,39 @@
-const getList = (_, res) => {
+const getTable = (_, res) => {
   res.json({
     success: true,
     message: '',
     data: {
+      page: {
+        title: 'Product List',
+        type: 'basiclist',
+        searchBar: true,
+        trash: false,
+      },
       layout: {
         tableColumn: [
           {
-            title: '产品编号',
+            title: '规则编号',
             dataIndex: 'key',
             key: 'key',
             type: 'text',
           },
           {
-            title: '产品名称',
-            dataIndex: 'name',
-            key: 'name',
+            title: '描述',
+            dataIndex: 'description',
+            key: 'description',
             type: 'text',
           },
           {
-            title: '年化利率 (%)',
-            dataIndex: 'interest_rate',
-            key: 'interest_rate',
+            title: '服务器调用次数',
+            dataIndex: 'severCallNum',
+            key: 'severCallNum',
             type: 'text',
-          },
-          {
-            title: '更新时间',
-            dataIndex: 'update_time',
-            key: 'update_time',
-            type: 'datatime',
           },
           {
             title: '状态',
             dataIndex: 'status',
             key: 'status',
-            type: 'status',
+            type: 'tag',
             data: [
               {
                 value: 0,
@@ -58,48 +58,43 @@ const getList = (_, res) => {
             ],
           },
           {
+            title: '更新时间',
+            dataIndex: 'datatime',
+            key: 'datatime',
+            type: 'datatime',
+          },
+          {
             title: '操作',
             dataIndex: 'actions',
             key: 'actions',
             type: 'actions',
             actions: [
               {
-                component: 'button',
+                key: '编辑',
                 text: '编辑',
-                type: 'primary',
-                action: 'edit',
-                uri: '',
               },
               {
-                component: 'button',
-                text: '删除',
-                type: 'default',
-                action: 'delete',
-                danger: true,
-                uri: '',
-              },
+                key: '订阅警报',
+                text: '订阅警报',
+              }
             ],
           },
         ],
-        tableToolBar: [
+        tableToolbar: [
           {
             component: 'button',
-            text: '+ 新建',
+            text: '新建',
             type: 'primary',
-            action: 'add',
           },
           {
             component: 'button',
-            text: '刷新',
-            type: 'dashed',
-            action: 'reload'
-          },
-          {
-            component: 'button',
-            text: '回收站',
+            text: '批量操作',
             type: 'default',
-            action: 'jump',
-            uri: '',
+          },
+          {
+            component: 'button',
+            text: '更多操作',
+            type: 'default',
           },
         ],
         searchToolbar: {
@@ -158,80 +153,73 @@ const getList = (_, res) => {
       dataSource: [
         {
           key: 1,
-          name: '这是一个产品名称',
-          interest_rate: 0.43,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 0,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 2,
-          name: '这是一个产品名称',
-          interest_rate: 1.37,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 1,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 3,
-          name: '这是一个产品名称',
-          interest_rate: 2.92,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 2,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 4,
-          name: '这是一个产品名称',
-          interest_rate: 1.37,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 3,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 5,
-          name: '这是一个产品名称',
-          interest_rate: 2.92,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 2,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 6,
-          name: '这是一个产品名称',
-          interest_rate: 2.92,
-          update_time: '2022-02-27T20:10:33+08:00',
-          status: 3,
+          description: '这是一段描述',
+          severCallNum: '357万',
+          status: 1,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 7,
-          name: '这是一个产品名称',
-          interest_rate: 1.37,
-          update_time: '2022-02-27T20:10:33+08:00',
+          description: '这是一段描述',
+          severCallNum: '357万',
           status: 0,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 8,
-          name: '这是一个产品名称',
-          interest_rate: 1.37,
-          update_time: '2022-02-27T20:10:33+08:00',
-          status: 1,
+          description: '这是一段描述',
+          severCallNum: '357万',
+          status: 0,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 9,
-          name: '这是一个产品名称',
-          interest_rate: 2.92,
-          update_time: '2022-02-27T20:10:33+08:00',
-          status: 1,
+          description: '这是一段描述',
+          severCallNum: '357万',
+          status: 3,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
         {
           key: 10,
-          name: '这是一个产品名称',
-          interest_rate: 0.43,
-          update_time: '2022-02-27T20:10:33+08:00',
-          status: 3,
-        },
-        {
-          key: 11,
-          name: '这是一个产品名称',
-          interest_rate: 0.43,
-          update_time: '2022-02-27T20:10:33+08:00',
-          status: 3,
+          description: '这是一段描述',
+          severCallNum: '357万',
+          status: 1,
+          datatime: '2022-02-27T20:10:33+08:00',
         },
       ],
       meta: {
@@ -244,5 +232,5 @@ const getList = (_, res) => {
 };
 
 export default {
-  'GET /formal/list': getList,
+  'GET /mock/table': getTable,
 };

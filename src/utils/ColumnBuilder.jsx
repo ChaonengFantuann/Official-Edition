@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Tag, Space } from "antd";
-import { Link } from "umi";
+import ActionBuilder from "./ActionBuilder";
 
 const ColumnBuilder = (tableColumn) => {
   const newColumns = [];
@@ -9,11 +9,10 @@ const ColumnBuilder = (tableColumn) => {
       switch (column.type) {
         case 'datatime':
           column.render = (value) => {
-            // console.log(value);
             return moment(value).format('YYYY-MM-DD HH:mm:ss');
           };
           break;
-        case 'tag':
+        case 'status':
           column.render = (value) => {
             const option = (column.data || []).find((item) => item.value === value);
             return (
@@ -23,12 +22,10 @@ const ColumnBuilder = (tableColumn) => {
           break;
         case 'actions':
           column.render = () => {
-              return (column.actions || []).map((action) => {
-                return (
-                    <Link key={action.text} to=''>{action.text}</Link>
-                );
-              })
-          };
+            return (
+              <Space>{ActionBuilder(column.actions)}</Space>
+            )
+          }
           break;
         default:
           break;
