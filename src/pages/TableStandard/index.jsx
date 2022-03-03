@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRequest } from 'umi';
 import { Table, Pagination, Row, Col, Space, Card } from "antd";
 import { PageContainer } from "@ant-design/pro-layout";
-import SearchBuiler from './components/SearchBuilder';
+import SearchBuiler from '@/utils/SearchBuilder';
 import ColumnBuilder from '@/utils/ColumnBuilder';
 import ActionBuilder from '@/utils/ActionBuilder';
 import styles from "./index.less";

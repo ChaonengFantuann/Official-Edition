@@ -56,4 +56,5 @@ export default {
   'menu.result.result.success': '提交成功',
   'menu.result.result.fail': '提交失败',
   'menu.list.product-list': '产品列表',
+  'menu.form.currency-form': '通用表单',
 };

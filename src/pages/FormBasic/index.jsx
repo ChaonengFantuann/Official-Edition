@@ -1,7 +1,7 @@
 import { useRequest } from 'umi';
 import { Form, Card, Row, Col, Space } from 'antd';
 import { PageContainer } from "@ant-design/pro-layout";
-import FormBuiler from './components/FormBuilder';
+import FormBuiler from '@/utils/FormBuilder';
 import ActionBuilder from '@/utils/ActionBuilder';
 import style from './index.less';
 

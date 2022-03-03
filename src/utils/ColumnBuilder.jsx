@@ -7,7 +7,7 @@ const ColumnBuilder = (tableColumn) => {
   (tableColumn || []).forEach((column) => {
     if (column.hideInColumn !== true) {
       switch (column.type) {
-        case 'datatime':
+        case 'datetime':
           column.render = (value) => {
             return moment(value).format('YYYY-MM-DD HH:mm:ss');
           };

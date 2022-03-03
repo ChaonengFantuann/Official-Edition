@@ -12,7 +12,7 @@ const SearchBuiler = (data) => {
       switch (field.type) {
         case 'text':
           return (
-            <Col sm={12}>
+            <Col sm={8}>
               <Form.Item {...basicAttr}>
                 <Input disabled={field.disabled} />
               </Form.Item>
@@ -41,13 +41,13 @@ const SearchBuiler = (data) => {
           );
         case 'tree':
           return (
-            <Col sm={6}>
+            <Col sm={8}>
               <Form.Item {...basicAttr}>
                 <TreeSelect treeData={field.data} disabled={field.disabled} treeCheckable />
               </Form.Item>
             </Col>
           );
-        case 'select':
+        case 'status':
         case 'switch':
           return (
             <Col sm={6}>

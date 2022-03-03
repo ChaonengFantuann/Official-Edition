@@ -85,6 +85,12 @@ export default [
     component: './ProductList',
   },
   {
+    name: 'form.currency-form',
+    icon: 'form',
+    path: '/currency-form',
+    component: './CurrencyForm',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

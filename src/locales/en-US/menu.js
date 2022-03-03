@@ -55,4 +55,5 @@ export default {
   'menu.result.result.success': 'Submit Success',
   'menu.result.result.fail': 'Submit Fail',
   'menu.list.product-list': 'Product List',
+  'menu.form.currency-form': 'Currency Form',
 };
