@@ -18,7 +18,7 @@ const FormBuiler = (data) => {
           );
         case 'inputNumber':
           return (
-            <Form.Item {...basicAttr} className={styles.form_item} style={{ width: '100%' }}>
+            <Form.Item {...basicAttr} className={styles.form_item}>
               <InputNumber disabled={field.disabled} />
             </Form.Item>
           );

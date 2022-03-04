@@ -81,7 +81,13 @@ export default [
   {
     name: 'list.product-list',
     icon: 'table',
-    path: '/product-list',
+    path: '/products/display',
+    component: './ProductList',
+  },
+  {
+    name: 'list.recycle-list',
+    icon: 'table',
+    path: '/products/recycle',
     component: './ProductList',
   },
   {

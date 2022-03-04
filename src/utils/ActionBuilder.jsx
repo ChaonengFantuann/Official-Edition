@@ -4,7 +4,7 @@ const ActionBuilder = (
   action,
   actionHandler,
   loading = false,
-  // record = {},
+  record = {},
 ) => {
   return (action || []).map((action) => {
     if (action.component === 'button') {
@@ -13,9 +13,10 @@ const ActionBuilder = (
         <Button
           key={action.text}
           type={action.type}
-          // onClick={() => {
-          //   actionHandler(action, record);
-          // }}
+          onClick={() => {
+            // console.log('点击时间触发');
+            actionHandler(action, record);
+          }}
           danger={action?.danger || false}
           loading={loading}
         >

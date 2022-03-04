@@ -56,4 +56,5 @@ export default {
   'menu.result.result.fail': 'Submit Fail',
   'menu.list.product-list': 'Product List',
   'menu.form.currency-form': 'Currency Form',
+  'menu.list.recycle-list': 'Recycle Bin',
 };

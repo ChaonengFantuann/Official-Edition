@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useRequest } from "umi";
+import { useRequest, history, useLocation } from "umi";
 import { useToggle } from "ahooks";
 import { stringify } from 'query-string';
-import { Button, Card, Pagination, Space, Table, Tooltip, Form, Row, Col, Radio } from "antd";
+import { Button, Card, Pagination, Space, Table, Tooltip, Form, Row, Col, Modal, message } from "antd";
 import { FooterToolbar, PageContainer } from "@ant-design/pro-layout";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import ColumnBuilder from "@/utils/ColumnBuilder";
 import SearchBuiler from '@/utils/SearchBuilder';
 import ActionBuilder from '@/utils/ActionBuilder';
@@ -15,21 +15,52 @@ import styles from "./index.less";
 const ProductList = () => {
 
   const [pageQuery, setPageQuery] = useState('');
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [searchVisible, setSearchVisible] = useToggle(false);
 
   const [searchForm] = Form.useForm();
+  const { confirm } = Modal
+  const location = useLocation();
 
   const init = useRequest((value) => {
     return {
-      url: `http://localhost:8000/formal/list${pageQuery}`,
+      url: `http://localhost:8000/mock${location.pathname}${pageQuery}`,
       params: value,
       paramsSerializer: (params) => {
-        console.log(params);
+        // console.log(params);
         return stringify(params, { arrayFormat: 'comma', skipEmptyString: true, skipNull: true });
       },
     };
   });
+  // console.log(location.pathname);
   // console.log(init);
+
+  const request = useRequest(
+    (values) => {
+      // message.loading({ content: 'Processing...', key: 'process', duration: 0 })
+      const { uri, method, ...formValues } = values;
+      return {
+        url: `http://localhost:8000${uri}`,
+        method: method,
+        // body: JSON.stringify(formValues),
+        data: {
+          ...formValues,
+        }
+      };
+    },
+    {
+      manual: true,
+      // onSuccess: (data) => {
+      //   message.success({
+      //     content: data?.message,
+      //     key: 'process',
+      //   });
+      // },
+      formatResult: (res) => {
+        return res;
+      }
+    }
+  );
 
   useEffect(() => {
     init.run();
@@ -42,6 +73,61 @@ const ProductList = () => {
 
   const onFinish = (value) => {
     init.run(submitFieldsAdaptor(value));
+  };
+
+  // record < object > : {
+  //   key: <number>
+  //   name: <string>
+  //   interest_rate: <number>
+  //   update_time: <string>
+  //   status: <number>
+  //  },
+  function actionHandler(action, record) {
+    // console.log(record);
+    switch (action.action) {
+      case 'add':
+      case 'recycle':
+      case 'display':
+        history.push(action.uri);
+        break;
+      case 'reload':
+        // console.log('reload');
+        init.run();
+        break;
+      case 'edit':
+        // action.uri: /products/edit/:xxx
+        // field: 正则表达式匹配的字段
+        const uri = (action.uri || '').replace(/:\w+/g, (field) => {
+          return record[field.replace(':', '')];
+        });
+        history.push(uri)
+        break;
+      //未优化
+      case 'delete':
+        // case 'deletePermanently':
+        // case 'restore':
+        // console.log(record);
+        confirm({
+          title: '您确定要删除这个产品吗？',
+          icon: <ExclamationCircleOutlined />,
+          content: '您还可以在回收站中恢复',
+          okText: '确定',
+          cancelText: '取消',
+          onOk() {
+            return request.run({
+              uri: action.uri,
+              method: action.method,
+              type: action.action,
+              ids: Object.keys(record).length ? [record.key] : selectedRowKeys,
+            });
+          },
+          onCancel() {
+            console.log('Cancel');
+          },
+        })
+      default:
+        break;
+    }
   };
 
   const searchLayout = () => {
@@ -74,7 +160,7 @@ const ProductList = () => {
   const beforeTableLayout = () => {
     return (
       <Space className={styles.tableToolBar}>
-        {ActionBuilder(init.data?.layout.tableToolBar)}
+        {ActionBuilder(init.data?.layout.tableToolBar, actionHandler)}
         <Tooltip title="search">
           <Button
             shape="circle"
@@ -90,9 +176,10 @@ const ProductList = () => {
   };
 
   const rowSelection = {
-    selectedRowKeys: [],
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(selectedRowKeys, selectedRows);
+    selectedRowKeys: selectedRowKeys,
+    onChange: (_selectedRowKeys, selectedRows) => {
+      console.log(_selectedRowKeys, selectedRows);
+      setSelectedRowKeys(_selectedRowKeys);
     },
   }
 
@@ -111,7 +198,13 @@ const ProductList = () => {
     );
   };
 
-  const batchToolBar = () => { };
+  const batchToolBar = () => {
+    return (
+      selectedRowKeys.length > 0 && (
+        <Space>{ActionBuilder(init.data?.layout.batchToolBar, actionHandler)}</Space>
+      )
+    );
+  };
 
   return (
     <PageContainer>
@@ -120,9 +213,10 @@ const ProductList = () => {
         {beforeTableLayout()}
         <Table
           dataSource={init.data?.dataSource}
-          columns={ColumnBuilder(init.data?.layout.tableColumn)}
+          columns={ColumnBuilder(init.data?.layout.tableColumn, actionHandler)}
           pagination={false}
           rowSelection={rowSelection}
+          loading={init.loading}
         >
         </Table>
         {afterTableLayout()}

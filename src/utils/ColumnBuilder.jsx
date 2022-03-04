@@ -2,7 +2,7 @@ import moment from "moment";
 import { Tag, Space } from "antd";
 import ActionBuilder from "./ActionBuilder";
 
-const ColumnBuilder = (tableColumn) => {
+const ColumnBuilder = (tableColumn, actionHandler) => {
   const newColumns = [];
   (tableColumn || []).forEach((column) => {
     if (column.hideInColumn !== true) {
@@ -21,9 +21,10 @@ const ColumnBuilder = (tableColumn) => {
           };
           break;
         case 'actions':
-          column.render = () => {
+          column.render = (_, record) => {
+            // console.log(record);
             return (
-              <Space>{ActionBuilder(column.actions)}</Space>
+              <Space>{ActionBuilder(column.actions, actionHandler, false, record)}</Space>
             )
           }
           break;
