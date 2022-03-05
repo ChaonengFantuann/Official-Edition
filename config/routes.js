@@ -93,7 +93,7 @@ export default [
   {
     name: 'form.currency-form',
     icon: 'form',
-    path: '/currency-form',
+    path: '/products/*',
     component: './CurrencyForm',
   },
   {

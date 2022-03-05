@@ -11,21 +11,52 @@ const FormBuiler = (data) => {
       }
       switch (field.type) {
         case 'input':
+          if (field.data !== undefined) {
+            var selectAfter = (
+              <Select defaultValue={field.data[0].value}>
+                {(field.data || []).map((option) => {
+                  return (
+                    <Select.Option value={option.value}>{option.title}</Select.Option>
+                  );
+                })}
+              </Select>
+            );
+          }
+          // console.log(field.data);
           return (
             <Form.Item {...basicAttr} className={styles.form_item}>
-              <Input disabled={field.disabled} />
+              <Input
+                placeholder={field.placeholder}
+                disabled={field.disabled}
+                addonAfter={selectAfter}
+                allowClear={true}
+                maxLength={field.maxLength}
+                showCount={true}
+                style={{ width: '100%' }}
+              />
             </Form.Item>
           );
         case 'inputNumber':
           return (
             <Form.Item {...basicAttr} className={styles.form_item}>
-              <InputNumber disabled={field.disabled} />
+              <InputNumber
+                disabled={field.disabled}
+                placeholder={field.placeholder}
+                addonAfter={field.addonAfter}
+                stringMode={field.stringMode}
+                min={field.min}
+                max={field.max}
+                step={field.step}
+                allowClear={true}
+                controls={false}
+                style={{ width: '100%' }}
+              />
             </Form.Item>
           );
         case 'datePicker':
           return (
             <Form.Item {...basicAttr} className={styles.form_item}>
-              <DatePicker disabled={field.disabled} />
+              <DatePicker disabled={field.disabled} style={{ width: '100%' }} />
             </Form.Item>
           );
         case 'select':

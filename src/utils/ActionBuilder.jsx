@@ -14,7 +14,7 @@ const ActionBuilder = (
           key={action.text}
           type={action.type}
           onClick={() => {
-            // console.log('点击时间触发');
+            console.log('点击时间触发');
             actionHandler(action, record);
           }}
           danger={action?.danger || false}
