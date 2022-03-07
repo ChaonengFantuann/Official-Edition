@@ -159,7 +159,7 @@ const ProductList = () => {
 
   const beforeTableLayout = () => {
     return (
-      <Space className={styles.tableToolBar}>
+      <Space className={styles.tableToolBar} size={'middle'}>
         {ActionBuilder(init.data?.layout.tableToolBar, actionHandler)}
         <Tooltip title="search">
           <Button

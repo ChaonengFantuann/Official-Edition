@@ -57,4 +57,5 @@ export default {
   'menu.list.product-list': 'Product List',
   'menu.form.currency-form': 'Currency Form',
   'menu.list.recycle-list': 'Recycle Bin',
+  'menu.client.product-list': 'Client Product List',
 };

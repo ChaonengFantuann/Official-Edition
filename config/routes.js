@@ -97,6 +97,12 @@ export default [
     component: './CurrencyForm',
   },
   {
+    name: 'client.product-list',
+    icon: 'table',
+    path: 'client/product',
+    component: './ClientProductList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
