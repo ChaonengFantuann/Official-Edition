@@ -34,7 +34,7 @@ const FormSenior = () => {
     <PageContainer >
       {formLayout()}
       <Card className={styles._formCard}>
-        <Row gutter={24, 0}>
+        <Row gutter={24}>
           <Col sm={24}>
             <Table
               dataSource={_init.data?.dataSource}

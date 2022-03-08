@@ -1,22 +1,27 @@
 export default [
+  // {
+  //   path: '/user',
+  //   layout: false,
+  //   routes: [
+  //     {
+  //       path: '/user',
+  //       routes: [
+  //         {
+  //           name: 'login',
+  //           path: '/user/login',
+  //           component: './user/Login',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       component: './404',
+  //     },
+  //   ],
+  // },
   {
-    path: '/user',
+    path: '/login',
+    component: './Login',
     layout: false,
-    routes: [
-      {
-        path: '/user',
-        routes: [
-          {
-            name: 'login',
-            path: '/user/login',
-            component: './user/Login',
-          },
-        ],
-      },
-      {
-        component: './404',
-      },
-    ],
   },
   {
     path: '/welcome',
@@ -103,8 +108,14 @@ export default [
     component: './ClientProductList',
   },
   {
+    name: '订单提交',
+    icon: 'table',
+    path: 'client/order',
+    component: './ClientOrder',
+  },
+  {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/login',
   },
   {
     component: './404',
