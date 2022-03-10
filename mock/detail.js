@@ -1,4 +1,4 @@
-const getCard = (_, res) => {
+const getProductsList = (_, res) => {
   res.json({
     success: true,
     message: '',
@@ -118,64 +118,68 @@ const getCard = (_, res) => {
       },
       dataSource: [
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
         },
         {
-          title: '我是标题',
-          description: '一句话描述一句话描述',
-          img: '',
-          uri: '',
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
+        },
+        {
+          title: '标题',
+          content: '内容',
         },
       ],
       meta: {
@@ -188,5 +192,5 @@ const getCard = (_, res) => {
 };
 
 export default {
-  'GET /mock/a': getCard,
+  'GET /mock/detial': getProductsList,
 };

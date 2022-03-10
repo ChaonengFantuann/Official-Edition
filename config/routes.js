@@ -1,64 +1,21 @@
 export default [
-  // {
-  //   path: '/user',
-  //   layout: false,
-  //   routes: [
-  //     {
-  //       path: '/user',
-  //       routes: [
-  //         {
-  //           name: 'login',
-  //           path: '/user/login',
-  //           component: './user/Login',
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       component: './404',
-  //     },
-  //   ],
-  // },
   {
     path: '/login',
     component: './Login',
     layout: false,
   },
   {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
-  {
-    path: '/admin',
-    name: 'admin',
+    name: 'management.product-list',
     icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
-    routes: [
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
-      },
-      {
-        component: './404',
-      },
-    ],
+    path: 'manegement/product',
+    component: './ProductList',
   },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
-  {
-    name: 'table.table-sta',
-    icon: 'table',
-    path: '/table-sta',
-    component: './TableStandard',
-  },
+  // {
+  //   name: 'management.product-list',
+  //   icon: 'crown',
+  //   path: '/management/product',
+  //   component: './ManagementProductList',
+  // },
   {
     name: 'form.form-basic',
     icon: 'form',
@@ -84,12 +41,6 @@ export default [
     component: './ResultFail',
   },
   {
-    name: 'list.product-list',
-    icon: 'table',
-    path: '/products/display',
-    component: './ProductList',
-  },
-  {
     name: 'list.recycle-list',
     icon: 'table',
     path: '/products/recycle',
@@ -110,8 +61,14 @@ export default [
   {
     name: '订单提交',
     icon: 'table',
-    path: 'client/order',
+    path: 'client/product/order/1',
     component: './ClientOrder',
+  },
+  {
+    name: '详情',
+    icon: 'table',
+    path: '/detail',
+    component: './Detail',
   },
   {
     path: '/',
@@ -120,4 +77,47 @@ export default [
   {
     component: './404',
   },
+  // {
+  //   path: '/user',
+  //   layout: false,
+  //   routes: [
+  //     {
+  //       path: '/user',
+  //       routes: [
+  //         {
+  //           name: 'login',
+  //           path: '/user/login',
+  //           component: './user/Login',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       component: './404',
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/admin',
+  //   name: 'admin',
+  //   icon: 'crown',
+  //   access: 'canAdmin',
+  //   component: './Admin',
+  //   routes: [
+  //     {
+  //       path: '/admin/sub-page',
+  //       name: 'sub-page',
+  //       icon: 'smile',
+  //       component: './Welcome',
+  //     },
+  //     {
+  //       component: './404',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'list.table-list',
+  //   icon: 'table',
+  //   path: '/list',
+  //   component: './TableList',
+  // },
 ];

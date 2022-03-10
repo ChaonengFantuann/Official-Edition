@@ -2,7 +2,6 @@ import { Input, Form, DatePicker, TreeSelect, Switch, InputNumber, Radio, Col, S
 
 const FormBuiler = (data) => {
   return (
-
     (data || []).map((field) => {
       const basicAttr = {
         label: field.title,

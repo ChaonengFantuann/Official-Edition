@@ -10,8 +10,8 @@ const ClientProductList = () => {
   const { Option } = Select;
   const { Search } = Input;
 
-  const init = useRequest(`http://localhost:8000/mock/client/product/card`);
-  // console.log(init);
+  const init = useRequest(`http://localhost:8000/mock/a`);
+  console.log(init);
 
   const searchLayout = () => {
     return (
@@ -102,6 +102,7 @@ const ClientProductList = () => {
 
 
   const cardLayout = () => {
+    console.log(init.data?.dataSource);
     return (
       <Row gutter={[36, 36]}>
         {CardBuilder(init.data?.dataSource)}

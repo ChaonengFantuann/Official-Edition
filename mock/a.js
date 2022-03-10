@@ -232,5 +232,5 @@ const getTable = (_, res) => {
 };
 
 export default {
-  'GET /mock/table': getTable,
+  'GET /mock/management/product': getTable,
 };

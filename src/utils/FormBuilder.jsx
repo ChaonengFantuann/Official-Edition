@@ -1,7 +1,8 @@
-import { Input, Form, DatePicker, TreeSelect, Switch, InputNumber, Radio, Select } from "antd";
+import { Input, Form, DatePicker, TreeSelect, Switch, InputNumber, Radio, Select, Col } from "antd";
 import styles from "../global.less"
 
 const FormBuiler = (data) => {
+  console.log(data);
   return (
     (data || []).map((field) => {
       const basicAttr = {
@@ -60,15 +61,17 @@ const FormBuiler = (data) => {
             </Form.Item>
           );
         case 'select':
-          <Form.Item {...basicAttr} valuePropName='checked'>
-            <Select>
-              {(field.data || []).map((option) => {
-                return (
-                  <Select.Option value={option.value}>{option.title}</Select.Option>
-                );
-              })}
-            </Select>
-          </Form.Item>
+          return (
+            <Form.Item {...basicAttr} valuePropName='checked'>
+              <Select>
+                {(field.data || []).map((option) => {
+                  return (
+                    <Select.Option value={option.value}>{option.title}</Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+          );
         case 'tree':
           return (
             <Form.Item {...basicAttr} className={styles.form_item}>

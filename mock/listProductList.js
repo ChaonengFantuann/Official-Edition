@@ -355,7 +355,7 @@ const getDeleteMessage = (_, res) => {
 };
 
 export default {
-  'GET /mock/products/display': getProductsList,
+  'GET /mock/manegement/product': getProductsList,
   'GET /mock/products/recycle': getRecycleList,
   'POST /product/delete': getDeleteMessage,
 };

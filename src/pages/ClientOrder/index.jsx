@@ -1,21 +1,23 @@
 import { useEffect } from "react";
 import { PageContainer } from "@ant-design/pro-layout";
-import { Form, Card, Row, Col, Space, Steps, Input } from 'antd';
+import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divider } from 'antd';
 import { useRequest, useLocation, history } from 'umi';
 import FormBuiler from "@/utils/FormBuilder";
 import ActionBuilder from "@/utils/ActionBuilder";
 import { submitFieldsAdaptor } from "@/utils/helper";
 import styles from "./index.less";
 
-const ClientOrder = () => {
+const CurrencyForm = () => {
 
   const { Step } = Steps;
   const [form] = Form.useForm();
   const loaction = useLocation();
-  console.log(loaction.pathname);
+  const { Text, Link } = Typography;
+  // console.log(loaction.pathname);
 
-  const init = useRequest(`http://localhost:8000/api${loaction.pathname.replace('/edit', '')}`);
-  // console.log(init.data?.layout.tabs[init.data.meta.page].data);
+  const init = useRequest(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
+  console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
+  console.log(init);
 
   const request = useRequest(
     (values) => {
@@ -76,6 +78,23 @@ const ClientOrder = () => {
   const formInitValues = (init.data?.dataSource || {})
   console.log(formInitValues);
 
+  const OrderLayout = () => {
+    if (init.data?.meta.page === 1) {
+      return (
+        <div className={styles.step}>
+          <Space direction="vertical" >
+            <Text >支付账户：AntDEsign@example.com</Text>
+            <Text>银行卡：XXXX XXXX XXXX XXXX 某银行储蓄卡</Text>
+            <Text>持有资产人姓名：张三</Text>
+            <Text>购买金额：50,000.00</Text>
+            <Divider />
+          </Space>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <PageContainer>
       <Form
@@ -94,6 +113,7 @@ const ClientOrder = () => {
                 <Step title="第二步" subTitle="这是一段文字" description="这是一段描述" />
                 <Step title="第三步" subTitle="这是一段文字" description="这是一段描述" />
               </Steps>
+              {OrderLayout()}
               {FormBuiler(init.data?.layout.tabs[init.data.meta.page].data)}
               <Space className={styles.actions} size='large'>
                 {ActionBuilder(init.data?.layout.actions[init.data.meta.page].data, actionHandler)}
@@ -113,4 +133,4 @@ const ClientOrder = () => {
   );
 };
 
-export default ClientOrder;
+export default CurrencyForm;

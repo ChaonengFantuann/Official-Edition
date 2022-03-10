@@ -11,7 +11,7 @@ const CardBuilder = (
     (cards || []).map((card) => {
       return (
         <Col sm={6}>
-          <Card onClick={() => { console.log('bbb'); }}
+          <Card
             hoverable={true}
             // loading={true}
             cover={

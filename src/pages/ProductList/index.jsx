@@ -23,6 +23,7 @@ const ProductList = () => {
   const location = useLocation();
 
   const init = useRequest((value) => {
+    // console.log(`http://localhost:8000/mock${location.pathname}${pageQuery}`);
     return {
       url: `http://localhost:8000/mock${location.pathname}${pageQuery}`,
       params: value,

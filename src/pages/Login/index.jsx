@@ -1,14 +1,9 @@
-import { Tabs, Form, Input, Button, Checkbox, Card } from 'antd';
+import { Tabs, Form, Input, Button, Checkbox, Card, Radio } from 'antd';
+import { history } from 'umi';
 import styles from "./index.less";
 
 
 const Login = () => {
-
-  const { TabPane } = Tabs;
-
-  const callback = (key) => {
-    console.log(key);
-  };
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -18,68 +13,72 @@ const Login = () => {
     console.log('Failed:', errorInfo);
   };
 
+  const onFormLayoutChange = () => {
+    console.log("change");
+  };
+
+  const routeJump = () => {
+    console.log("aaa");
+    history.push("/welcome");
+  };
+
   return (
     <div className={styles.page}>
-      <Card
-        bordered={false}
-        style={{ width: 500 }}
+      <Form
+        name="basic"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 4 }}
+        onValuesChange={onFormLayoutChange}
       >
-        <Tabs
-          defaultActiveKey="1"
-          size="large"
-          onChange={callback}
+        <Form.Item
+          label="端口"
+          name="layout"
+          rules={[
+            {
+              required: true,
+              message: '请选择您要登录的端口！',
+            },
+          ]}
         >
-          <TabPane tab="Tab 1" key="1">
-            <Form
-              name="basic"
-              // labelCol={{ span: 10 }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              autoComplete="off"
-            >
-              <Form.Item
-                label="用户名"
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入您的用户名！',
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
-                label="密码"
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入您的密码',
-                  },
-                ]}
-              >
-                <Input.Password />
-              </Form.Item>
-
-              <Form.Item
-                wrapperCol={{
-                  offset: 9,
-                  span: 6,
-                }}
-              >
-                <Button type="primary" htmlType="submit" style={{ width: 200 }} >
-                  登录
-                </Button>
-              </Form.Item>
-            </Form>
-          </TabPane>
-          <TabPane tab="Tab 2" key="2">
-            Content of Tab Pane 2
-          </TabPane>
-        </Tabs>
-      </Card>
+          <Radio.Group buttonStyle="solid">
+            <Radio.Button value="1">客户端</Radio.Button>
+            <Radio.Button value="2">管理端</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item
+          label="用户名"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: '请输入您的用户名！',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: '请输入您的密码',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 10, span: 4 }}
+        >
+          <Button type="primary" htmlType="submit" block={true} onClick={routeJump}>
+            登录
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 };
