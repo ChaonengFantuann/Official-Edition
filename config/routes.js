@@ -5,70 +5,58 @@ export default [
     layout: false,
   },
   {
-    name: 'management.product-list',
+    name: '管理端',
     icon: 'crown',
-    path: 'manegement/product',
-    component: './ProductList',
-  },
-  // {
-  //   name: 'management.product-list',
-  //   icon: 'crown',
-  //   path: '/management/product',
-  //   component: './ManagementProductList',
-  // },
-  {
-    name: 'form.form-basic',
-    icon: 'form',
-    path: '/from-basic',
-    component: './FormBasic',
-  },
-  {
-    name: 'form.form-senior',
-    icon: 'form',
-    path: '/from-senior',
-    component: './FormSenior',
-  },
-  {
-    name: 'result.result.success',
-    icon: 'smile',
-    path: '/result-success',
-    component: './ResultSuccess',
-  },
-  {
-    name: 'result.result.fail',
-    icon: 'smile',
-    path: '/result-fail',
-    component: './ResultFail',
+    path: '/manegement',
+    routes: [
+      {
+        name: '产品',
+        path: 'product',
+        component: './TableList1',
+      },
+      {
+        name: '回收站',
+        path: 'product/recycle',
+        component: './TableList1',
+      },
+      {
+        name: '详情',
+        path: 'product/details',
+        component: './ListList',
+      },
+      {
+        name: '添加',
+        path: 'product/add',
+        component: './BasicForm',
+      },
+      {
+        name: '编辑',
+        path: 'product/edit/*',
+        component: './BasicForm',
+      },
+    ],
   },
   {
-    name: 'list.recycle-list',
-    icon: 'table',
-    path: '/products/recycle',
-    component: './ProductList',
-  },
-  {
-    name: 'form.currency-form',
-    icon: 'form',
-    path: '/products/*',
-    component: './CurrencyForm',
-  },
-  {
-    name: 'client.product-list',
-    icon: 'table',
-    path: 'client/product',
-    component: './ClientProductList',
-  },
-  {
-    name: '订单提交',
-    icon: 'table',
-    path: 'client/product/order/1',
-    component: './ClientOrder',
-  },
-  {
-    name: '详情',
-    icon: 'table',
-    path: '/detail',
-    component: './Detail',
+    name: '客户端',
+    icon: 'crown',
+    path: '/client',
+    routes: [
+      {
+        name: '产品',
+        path: 'product',
+        component: './CardList',
+      },
+      {
+        name: '详情',
+        path: 'product/details',
+        component: './ListList',
+      },
+      {
+        name: '购买',
+        path: 'product/purchase/*',
+        component: './BasicForm',
+      },
+    ],
   },
   {
     path: '/',
@@ -77,6 +65,42 @@ export default [
   {
     component: './404',
   },
+  // {
+  //   name: 'management.product-list',
+  //   icon: 'crown',
+  //   path: '/management/product',
+  //   component: './ManagementProductList',
+  // },
+  // {
+  //   name: 'form.form-basic',
+  //   icon: 'form',
+  //   path: '/from-basic',
+  //   component: './FormBasic',
+  // },
+  // {
+  //   name: 'form.form-senior',
+  //   icon: 'form',
+  //   path: '/from-senior',
+  //   component: './FormSenior',
+  // },
+  // {
+  //   name: 'result.result.success',
+  //   icon: 'smile',
+  //   path: '/result-success',
+  //   component: './ResultSuccess',
+  // },
+  // {
+  //   name: 'result.result.fail',
+  //   icon: 'smile',
+  //   path: '/result-fail',
+  //   component: './ResultFail',
+  // },
+  // {
+  //   name: 'form.currency-form',
+  //   icon: 'form',
+  //   path: '/products/*',
+  //   component: './CurrencyForm',
+  // },
   // {
   //   path: '/user',
   //   layout: false,
