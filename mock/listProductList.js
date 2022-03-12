@@ -38,22 +38,22 @@ const getProductsList = (_, res) => {
               {
                 value: 0,
                 title: '关闭',
-                color: 'geekblue'
+                color: 'geekblue',
               },
               {
                 value: 1,
                 title: '异常',
-                color: 'red'
+                color: 'red',
               },
               {
                 value: 2,
                 title: '运行中',
-                color: 'blue'
+                color: 'blue',
               },
               {
                 value: 3,
                 title: '已上线',
-                color: 'green'
+                color: 'green',
               },
             ],
           },
@@ -68,7 +68,14 @@ const getProductsList = (_, res) => {
                 text: '编辑',
                 type: 'primary',
                 action: 'edit',
-                uri: '/products/edit/:key',
+                uri: '/manegement/product/edit/:key',
+              },
+              {
+                component: 'button',
+                text: '详情',
+                type: 'default',
+                action: 'detial',
+                uri: '/manegement/product/detail/:key',
               },
               {
                 component: 'button',
@@ -77,7 +84,7 @@ const getProductsList = (_, res) => {
                 action: 'delete',
                 danger: true,
                 uri: '/product/delete',
-                method: 'post'
+                method: 'post',
               },
             ],
           },
@@ -88,20 +95,20 @@ const getProductsList = (_, res) => {
             text: '+ 新建',
             type: 'primary',
             action: 'add',
-            uri: '/products/add'
+            uri: '/manegement/product/add',
           },
           {
             component: 'button',
             text: '刷新',
             type: 'dashed',
-            action: 'reload'
+            action: 'reload',
           },
           {
             component: 'button',
             text: '回收站',
             type: 'default',
             action: 'recycle',
-            uri: '/products/recycle',
+            uri: '/manegement/product/recycle',
           },
         ],
         batchToolBar: [
@@ -237,22 +244,22 @@ const getRecycleList = (_, res) => {
               {
                 value: 0,
                 title: '关闭',
-                color: 'geekblue'
+                color: 'geekblue',
               },
               {
                 value: 1,
                 title: '异常',
-                color: 'red'
+                color: 'red',
               },
               {
                 value: 2,
                 title: '运行中',
-                color: 'blue'
+                color: 'blue',
               },
               {
                 value: 3,
                 title: '已上线',
-                color: 'green'
+                color: 'green',
               },
             ],
           },
@@ -269,7 +276,7 @@ const getRecycleList = (_, res) => {
                 action: 'delete',
                 danger: true,
                 uri: '/recycle/delete',
-                method: 'post'
+                method: 'post',
               },
             ],
           },
@@ -286,7 +293,7 @@ const getRecycleList = (_, res) => {
             component: 'button',
             text: '刷新',
             type: 'dashed',
-            action: 'reload'
+            action: 'reload',
           },
         ],
         batchToolBar: [
@@ -350,12 +357,12 @@ const getRecycleList = (_, res) => {
 const getDeleteMessage = (_, res) => {
   res.json({
     code: 300,
-    message: 'delete success'
-  })
+    message: 'delete success',
+  });
 };
 
 export default {
   'GET /mock/manegement/product': getProductsList,
-  'GET /mock/products/recycle': getRecycleList,
+  'GET /mock/manegement/product/recycle': getRecycleList,
   'POST /product/delete': getDeleteMessage,
 };

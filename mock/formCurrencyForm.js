@@ -60,7 +60,7 @@ const getForm = (_, res) => {
                 title: '起息日期',
                 dataIndex: 'data_value',
                 key: 'data_value',
-                placeholder: '这是一段描述'
+                placeholder: '这是一段描述',
               },
               {
                 type: 'datePicker',
@@ -81,10 +81,10 @@ const getForm = (_, res) => {
                 key: 'yearate',
                 addonAfter: '%',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -93,10 +93,10 @@ const getForm = (_, res) => {
                 key: 'amount_mini',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -105,10 +105,10 @@ const getForm = (_, res) => {
                 key: 'amount_increa',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -117,10 +117,10 @@ const getForm = (_, res) => {
                 key: 'limit_single',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -129,10 +129,10 @@ const getForm = (_, res) => {
                 key: 'limit_day',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
             ],
           },
@@ -148,7 +148,7 @@ const getForm = (_, res) => {
                 data: [
                   {
                     title: '高',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '中',
@@ -168,7 +168,7 @@ const getForm = (_, res) => {
                 data: [
                   {
                     title: '方式1',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '方式2',
@@ -188,7 +188,7 @@ const getForm = (_, res) => {
                 data: [
                   {
                     title: '异常',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '关闭',
@@ -212,7 +212,7 @@ const getForm = (_, res) => {
                 data: [
                   {
                     title: '无',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '低',
@@ -237,7 +237,7 @@ const getForm = (_, res) => {
                 stringMode: false,
                 min: '0',
                 max: '10',
-                placeholder: '这是一段描述'
+                placeholder: '这是一段描述',
               },
             ],
           },
@@ -382,7 +382,7 @@ const get1Form = (_, res) => {
                 title: '起息日期',
                 dataIndex: 'data_value',
                 key: 'data_value',
-                placeholder: '这是一段描述'
+                placeholder: '这是一段描述',
               },
               {
                 type: 'datePicker',
@@ -403,10 +403,10 @@ const get1Form = (_, res) => {
                 key: 'yearate',
                 addonAfter: '%',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -415,10 +415,10 @@ const get1Form = (_, res) => {
                 key: 'amount_mini',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -427,10 +427,10 @@ const get1Form = (_, res) => {
                 key: 'amount_increa',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -439,10 +439,10 @@ const get1Form = (_, res) => {
                 key: 'limit_single',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
               {
                 type: 'inputNumber',
@@ -451,10 +451,10 @@ const get1Form = (_, res) => {
                 key: 'limit_day',
                 addonAfter: '元 (¥)',
                 stringMode: true,
-                min: "0",
-                max: "10",
-                step: "0.01",
-                placeholder: '这是一段描述'
+                min: '0',
+                max: '10',
+                step: '0.01',
+                placeholder: '这是一段描述',
               },
             ],
           },
@@ -470,7 +470,7 @@ const get1Form = (_, res) => {
                 data: [
                   {
                     title: '高',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '中',
@@ -490,7 +490,7 @@ const get1Form = (_, res) => {
                 data: [
                   {
                     title: '方式1',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '方式2',
@@ -510,7 +510,7 @@ const get1Form = (_, res) => {
                 data: [
                   {
                     title: '异常',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '关闭',
@@ -534,7 +534,7 @@ const get1Form = (_, res) => {
                 data: [
                   {
                     title: '无',
-                    value: 1
+                    value: 1,
                   },
                   {
                     title: '低',
@@ -559,7 +559,7 @@ const get1Form = (_, res) => {
                 stringMode: false,
                 min: '0',
                 max: '10',
-                placeholder: '这是一段描述'
+                placeholder: '这是一段描述',
               },
             ],
           },
@@ -646,6 +646,6 @@ const get1Form = (_, res) => {
   });
 };
 export default {
-  'GET /api/products/*': get1Form,
-  'GET /api/products/add': getForm,
+  'GET /mock/manegement/product/edit/*': get1Form,
+  'GET /mock/manegement/product/add': getForm,
 };

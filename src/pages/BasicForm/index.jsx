@@ -12,10 +12,10 @@ const CurrencyForm = () => {
   const [form] = Form.useForm();
   const loaction = useLocation();
   const { Text, Link } = Typography;
-  // console.log(loaction.pathname);
+  console.log(loaction.pathname);
 
   const init = useRequest(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
-  console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
+  // console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
   console.log(init);
 
   const request = useRequest(

@@ -98,7 +98,6 @@ const TableList1 = () => {
     switch (action.action) {
       case 'add':
       case 'recycle':
-      case 'display':
         history.push(action.uri);
         break;
       case 'reload':
@@ -106,6 +105,7 @@ const TableList1 = () => {
         init.run();
         break;
       case 'edit':
+      case 'detial':
         // action.uri: /products/edit/:xxx
         // field: 正则表达式匹配的字段
         const uri = (action.uri || '').replace(/:\w+/g, (field) => {
