@@ -12,11 +12,11 @@ const CurrencyForm = () => {
   const [form] = Form.useForm();
   const loaction = useLocation();
   const { Text, Link } = Typography;
-  console.log(loaction.pathname);
+  // console.log(loaction.pathname);
 
   const init = useRequest(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
   // console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
-  console.log(init);
+  // console.log(init);
 
   const request = useRequest(
     (values) => {
@@ -75,7 +75,7 @@ const CurrencyForm = () => {
   };
 
   const formInitValues = init.data?.dataSource || {};
-  console.log(formInitValues);
+  // console.log(formInitValues);
 
   const OrderLayout = () => {
     if (init.data?.meta.page === 1) {
@@ -102,11 +102,17 @@ const CurrencyForm = () => {
             <Col sm={6} />
             <Col sm={12} className={styles.step}>
               <Steps current={init.data?.meta.page}>
-                <Step title="第一步" subTitle="这是一段文字" description="这是一段描述" />
-                <Step title="第二步" subTitle="这是一段文字" description="这是一段描述" />
-                <Step title="第三步" subTitle="这是一段文字" description="这是一段描述" />
+                <Step title="第一步" subTitle="" description="" />
+                <Step title="第二步" subTitle="" description="" />
+                <Step title="第三步" subTitle="" description="" />
               </Steps>
-              {OrderLayout()}
+            </Col>
+            <Col sm={6} />
+          </Row>
+          <Row>
+            <Col sm={7} />
+            <Col sm={10}>
+              {/* {OrderLayout()} */}
               {FormBuiler(init.data?.layout.tabs[init.data.meta.page].data)}
               <Space className={styles.actions} size="large">
                 {ActionBuilder(init.data?.layout.actions[init.data.meta.page].data, actionHandler)}
@@ -118,7 +124,7 @@ const CurrencyForm = () => {
                 <Input />
               </Form.Item>
             </Col>
-            <Col sm={6} />
+            <Col sm={7} />
           </Row>
         </Card>
       </Form>

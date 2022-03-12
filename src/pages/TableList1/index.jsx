@@ -98,6 +98,7 @@ const TableList1 = () => {
     switch (action.action) {
       case 'add':
       case 'recycle':
+      case 'display':
         history.push(action.uri);
         break;
       case 'reload':

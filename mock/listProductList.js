@@ -271,6 +271,13 @@ const getRecycleList = (_, res) => {
             actions: [
               {
                 component: 'button',
+                text: '详情',
+                type: 'default',
+                action: 'detial',
+                uri: '/manegement/product/detail/:key',
+              },
+              {
+                component: 'button',
                 text: '永久删除',
                 type: 'primary',
                 action: 'delete',
@@ -287,7 +294,7 @@ const getRecycleList = (_, res) => {
             text: '产品列表',
             type: 'primary',
             action: 'display',
-            uri: '/products/display',
+            uri: '/manegement/product',
           },
           {
             component: 'button',

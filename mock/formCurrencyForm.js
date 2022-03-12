@@ -18,8 +18,12 @@ const getForm = (_, res) => {
                 title: '产品编号',
                 dataIndex: 'id',
                 key: 'id',
-                placeholder: '这是一段描述',
+                // placeholder: '这是一段描述',
                 maxLength: 16,
+                data: {
+                  prefix: '￥',
+                  suffix: 'RMB',
+                },
               },
               {
                 type: 'input',
@@ -36,24 +40,44 @@ const getForm = (_, res) => {
                 key: 'deadline',
                 placeholder: '这是一段描述',
                 maxLength: 16,
-                data: [
-                  {
-                    title: '天',
-                    value: 'day',
-                  },
-                  {
-                    title: '月',
-                    value: 'month',
-                  },
-                  {
-                    title: '季度',
-                    value: 'season',
-                  },
-                  {
-                    title: '年',
-                    value: 'year',
-                  },
-                ],
+                data: {
+                  addowBefore: [
+                    {
+                      title: '天',
+                      value: 'day',
+                    },
+                    // {
+                    //   title: '月',
+                    //   value: 'month',
+                    // },
+                    // {
+                    //   title: '季度',
+                    //   value: 'season',
+                    // },
+                    // {
+                    //   title: '年',
+                    //   value: 'year',
+                    // },
+                  ],
+                  addowAfter: [
+                    {
+                      title: '天',
+                      value: 'day',
+                    },
+                    {
+                      title: '月',
+                      value: 'month',
+                    },
+                    {
+                      title: '季度',
+                      value: 'season',
+                    },
+                    {
+                      title: '年',
+                      value: 'year',
+                    },
+                  ],
+                },
               },
               {
                 type: 'datePicker',
@@ -314,7 +338,7 @@ const getForm = (_, res) => {
         ],
       },
       meta: {
-        page: 1,
+        page: 0,
       },
     },
   });
