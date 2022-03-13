@@ -12,9 +12,10 @@ const FormBuiler = (data) => {
     switch (field.type) {
       case 'input':
         if (field.data?.addowBefore !== undefined) {
-          console.log(field.data.addowBefore.length);
+          // console.log(field.data.addowBefore.length);
+          console.log(field.data.addowAfter.length);
           if (field.data.addowBefore.length > 1) {
-            var selectBefore = (
+            var inputSelectBefore = (
               <Select defaultValue={field.data.addowBefore[0].value}>
                 {(field.data.addowBefore || []).map((option) => {
                   return <Select.Option value={option.value}>{option.title}</Select.Option>;
@@ -22,17 +23,21 @@ const FormBuiler = (data) => {
               </Select>
             );
           } else {
-            var selectBefore = field.data.addowBefore[0].title;
+            var inputSelectBefore = field.data.addowBefore[0].title;
           }
         }
         if (field.data?.addowAfter !== undefined) {
-          var selectAfter = (
-            <Select defaultValue={field.data?.addowAfter[0].value}>
-              {field.data.addowAfter.map((option) => {
-                return <Select.Option value={option.value}>{option.title}</Select.Option>;
-              })}
-            </Select>
-          );
+          if (field.data.addowAfter.length > 1) {
+            var InputSelectAfter = (
+              <Select defaultValue={field.data?.addowAfter[0].value}>
+                {field.data.addowAfter.map((option) => {
+                  return <Select.Option value={option.value}>{option.title}</Select.Option>;
+                })}
+              </Select>
+            );
+          } else {
+            var InputSelectAfter = field.data.addowAfter[0].title;
+          }
         }
         // console.log(field.data);
         return (
@@ -40,9 +45,9 @@ const FormBuiler = (data) => {
             <Input
               placeholder={field.data?.placeholder}
               disabled={field.disabled}
-              addonBefore={selectBefore}
+              addonBefore={inputSelectBefore}
               prefix={field.data?.prefix}
-              addonAfter={selectAfter}
+              addonAfter={InputSelectAfter}
               suffix={field.data?.suffix}
               maxLength={field.data?.maxLength}
               allowClear={field.data?.allowClear}
@@ -52,12 +57,41 @@ const FormBuiler = (data) => {
           </Form.Item>
         );
       case 'inputNumber':
+        if (field.data?.addowBefore !== undefined) {
+          // console.log(field.data.addowBefore.length);
+          if (field.data.addowBefore.length > 1) {
+            var inputNumberSelectBefore = (
+              <Select defaultValue={field.data.addowBefore[0].value}>
+                {(field.data.addowBefore || []).map((option) => {
+                  return <Select.Option value={option.value}>{option.title}</Select.Option>;
+                })}
+              </Select>
+            );
+          } else {
+            var inputNumberSelectBefore = field.data.addowBefore[0].title;
+          }
+        }
+        if (field.data?.addowAfter !== undefined) {
+          if (field.data.addowAfter.length > 1) {
+            var InputNumberSelectAfter = (
+              <Select defaultValue={field.data?.addowAfter[0].value}>
+                {field.data.addowAfter.map((option) => {
+                  return <Select.Option value={option.value}>{option.title}</Select.Option>;
+                })}
+              </Select>
+            );
+          } else {
+            var InputNumberSelectAfter = field.data.addowAfter[0].title;
+          }
+        }
         return (
           <Form.Item {...basicAttr} className={styles.form_item}>
             <InputNumber
               disabled={field.disabled}
               placeholder={field.placeholder}
-              addonAfter={field.addonAfter}
+              addonBefore={inputNumberSelectBefore}
+              prefix={field.data?.prefix}
+              addonAfter={InputNumberSelectAfter}
               stringMode={field.stringMode}
               min={field.min}
               max={field.max}

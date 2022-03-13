@@ -60,7 +60,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/manegement/product',
   },
   {
     component: './404',

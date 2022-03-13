@@ -14,7 +14,7 @@ const getForm = (_, res) => {
             title: 'title1',
             data: [
               {
-                type: 'input',
+                type: 'inputNumber',
                 title: '产品编号',
                 dataIndex: 'id',
                 key: 'id',
@@ -34,7 +34,7 @@ const getForm = (_, res) => {
                 maxLength: 16,
               },
               {
-                type: 'input',
+                type: 'inputNumber',
                 title: '产品期限',
                 dataIndex: 'deadline',
                 key: 'deadline',
@@ -42,24 +42,6 @@ const getForm = (_, res) => {
                 maxLength: 16,
                 data: {
                   addowBefore: [
-                    {
-                      title: '天',
-                      value: 'day',
-                    },
-                    // {
-                    //   title: '月',
-                    //   value: 'month',
-                    // },
-                    // {
-                    //   title: '季度',
-                    //   value: 'season',
-                    // },
-                    // {
-                    //   title: '年',
-                    //   value: 'year',
-                    // },
-                  ],
-                  addowAfter: [
                     {
                       title: '天',
                       value: 'day',
@@ -76,6 +58,24 @@ const getForm = (_, res) => {
                       title: '年',
                       value: 'year',
                     },
+                  ],
+                  addowAfter: [
+                    {
+                      title: '天',
+                      value: 'day',
+                    },
+                    // {
+                    //   title: '月',
+                    //   value: 'month',
+                    // },
+                    // {
+                    //   title: '季度',
+                    //   value: 'season',
+                    // },
+                    // {
+                    //   title: '年',
+                    //   value: 'year',
+                    // },
                   ],
                 },
               },
