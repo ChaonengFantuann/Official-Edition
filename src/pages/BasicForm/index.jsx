@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divider } from 'antd';
 import { useRequest, useLocation, history } from 'umi';
@@ -8,13 +8,15 @@ import { submitFieldsAdaptor } from '@/utils/helper';
 import styles from './index.less';
 
 const CurrencyForm = () => {
+  const [page, setPage] = useState(0);
+
   const { Step } = Steps;
   const [form] = Form.useForm();
   const loaction = useLocation();
   const { Text, Link } = Typography;
   // console.log(loaction.pathname);
 
-  const init = useRequest(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
+  const init = useRequest(`http://localhost:8000/mock${loaction.pathname}`);
   // console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
   // console.log(init);
 
@@ -23,7 +25,7 @@ const CurrencyForm = () => {
       // message.loading({ content: 'Processing...', key: 'process', duration: 0 })
       const { uri, method, ...formValues } = values;
       return {
-        url: `http://localhost:8000/mock${uri}`,
+        url: `http://localhost:8000/api${uri}`,
         method: method,
         // body: JSON.stringify(formValues),
         data: {
@@ -33,26 +35,42 @@ const CurrencyForm = () => {
     },
     {
       manual: true,
-      // onSuccess: (data) => {
-      //   message.success({
-      //     content: (data?.message || []),
-      //     key: 'process',
-      //   });
-      //   history.goBack();
-      // },
-      // formatResult: (res) => {
-      //   return res;
-      // }
+      onSuccess: (data) => {
+        if (data?.code === 200) {
+          setPage(page + 1);
+        }
+        // console.log(data);
+        // message.success({
+        //   content: (data?.message || []),
+        //   key: 'process',
+        // });
+        // history.goBack();
+      },
+      formatResult: (res) => {
+        return res;
+      },
     },
   );
+
   useEffect(() => {
     if (init.data?.dataSource) {
       form.setFieldsValue(init.data.dataSource);
     }
   }, [init.data?.dataSource]);
+
   const actionHandler = (action) => {
     // console.log("bbb");
     switch (action.action) {
+      case 'next':
+        form.setFieldsValue({ uri: action.uri, method: action.method });
+        form.submit();
+        break;
+      case 'previous':
+        setPage(page - 1);
+        break;
+      case 'clear':
+        form.resetFields();
+        break;
       case 'submit':
         console.log('提交');
         form.setFieldsValue({ uri: action.uri, method: action.method });
@@ -61,9 +79,7 @@ const CurrencyForm = () => {
       // case 'cancel':
       //   hideModal();
       //   break;
-      case 'clear':
-        form.resetFields();
-        break;
+
       default:
         break;
     }
@@ -94,6 +110,8 @@ const CurrencyForm = () => {
     return null;
   };
 
+  const SuccessLayout = () => {};
+
   return (
     <PageContainer>
       <Form onFinish={onFinish} form={form} initialValues={{}}>
@@ -101,7 +119,7 @@ const CurrencyForm = () => {
           <Row>
             <Col sm={6} />
             <Col sm={12} className={styles.step}>
-              <Steps current={init.data?.meta.page}>
+              <Steps current={page}>
                 <Step title="第一步" subTitle="" description="" />
                 <Step title="第二步" subTitle="" description="" />
                 <Step title="第三步" subTitle="" description="" />
@@ -113,9 +131,12 @@ const CurrencyForm = () => {
             <Col sm={7} />
             <Col sm={10}>
               {/* {OrderLayout()} */}
-              {FormBuiler(init.data?.layout.tabs[init.data.meta.page].data)}
+              {SuccessLayout()}
+              {/* {FormBuiler(init.data?.layout.tabs[init.data.meta.page].data)} */}
+              {FormBuiler(init.data?.layout.tabs[page].data)}
               <Space className={styles.actions} size="large">
-                {ActionBuilder(init.data?.layout.actions[init.data.meta.page].data, actionHandler)}
+                {/* {ActionBuilder(init.data?.layout.actions[init.data.meta.page].data, actionHandler)} */}
+                {ActionBuilder(init.data?.layout.actions[page].data, actionHandler)}
               </Space>
               <Form.Item name="uri" key="uri" hidden>
                 <Input />

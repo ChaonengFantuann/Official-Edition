@@ -18,11 +18,8 @@ const getForm = (_, res) => {
                 title: '产品编号',
                 dataIndex: 'id',
                 key: 'id',
-                // placeholder: '这是一段描述',
-                maxLength: 16,
                 data: {
-                  prefix: '￥',
-                  suffix: 'RMB',
+                  placeholder: '这是一段描述',
                 },
               },
               {
@@ -30,21 +27,26 @@ const getForm = (_, res) => {
                 title: '产品名称',
                 dataIndex: 'name',
                 key: 'name',
-                placeholder: '这是一段描述',
-                maxLength: 16,
+                data: {
+                  placeholder: '这是一段描述',
+                  allowClear: true,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '产品期限',
                 dataIndex: 'deadline',
                 key: 'deadline',
-                placeholder: '这是一段描述',
-                maxLength: 16,
                 data: {
-                  addowBefore: [
+                  placeholder: '这是一段描述',
+                  addowAfter: [
                     {
                       title: '天',
                       value: 'day',
+                    },
+                    {
+                      title: '周',
+                      value: 'week',
                     },
                     {
                       title: '月',
@@ -58,24 +60,6 @@ const getForm = (_, res) => {
                       title: '年',
                       value: 'year',
                     },
-                  ],
-                  addowAfter: [
-                    {
-                      title: '天',
-                      value: 'day',
-                    },
-                    // {
-                    //   title: '月',
-                    //   value: 'month',
-                    // },
-                    // {
-                    //   title: '季度',
-                    //   value: 'season',
-                    // },
-                    // {
-                    //   title: '年',
-                    //   value: 'year',
-                    // },
                   ],
                 },
               },
@@ -103,60 +87,85 @@ const getForm = (_, res) => {
                 title: '年化利率',
                 dataIndex: 'yearate',
                 key: 'yearate',
-                addonAfter: '%',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: '%',
+                      value: '%',
+                    },
+                  ],
+                  accuracy: {
+                    stringMode: true,
+                    min: '-99.99',
+                    max: '99.99',
+                    step: '0.01',
+                  },
+                },
               },
               {
                 type: 'inputNumber',
                 title: '起存金额',
                 dataIndex: 'amount_mini',
                 key: 'amount_mini',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '递增金额',
                 dataIndex: 'amount_increa',
                 key: 'amount_increa',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '单人限额',
                 dataIndex: 'limit_single',
                 key: 'limit_single',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '单日限额',
                 dataIndex: 'limit_day',
                 key: 'limit_day',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
             ],
           },
@@ -257,11 +266,16 @@ const getForm = (_, res) => {
                 title: '产品库存',
                 dataIndex: 'inventory',
                 key: 'inventory',
-                addonAfter: '元 (¥)',
-                stringMode: false,
-                min: '0',
-                max: '10',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
             ],
           },
@@ -281,8 +295,8 @@ const getForm = (_, res) => {
                 component: 'button',
                 text: '下一步',
                 type: 'primary',
-                action: 'submit',
-                uri: '/products/add',
+                action: 'next',
+                uri: '/product/add',
                 method: 'post',
               },
             ],
@@ -295,7 +309,7 @@ const getForm = (_, res) => {
                 component: 'button',
                 text: '上一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'previous',
               },
               {
                 component: 'button',
@@ -307,7 +321,7 @@ const getForm = (_, res) => {
                 component: 'button',
                 text: '下一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'next',
               },
             ],
           },
@@ -319,7 +333,7 @@ const getForm = (_, res) => {
                 component: 'button',
                 text: '上一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'previous',
               },
               {
                 component: 'button',
@@ -338,7 +352,7 @@ const getForm = (_, res) => {
         ],
       },
       meta: {
-        page: 0,
+        page: 2,
       },
     },
   });
@@ -360,46 +374,54 @@ const get1Form = (_, res) => {
             title: 'title1',
             data: [
               {
-                type: 'input',
+                type: 'inputNumber',
                 title: '产品编号',
                 dataIndex: 'id',
                 key: 'id',
-                placeholder: '这是一段描述',
-                maxLength: 16,
+                data: {
+                  placeholder: '这是一段描述',
+                },
               },
               {
                 type: 'input',
                 title: '产品名称',
                 dataIndex: 'name',
                 key: 'name',
-                placeholder: '这是一段描述',
-                maxLength: 16,
+                data: {
+                  placeholder: '这是一段描述',
+                  allowClear: true,
+                },
               },
               {
-                type: 'input',
+                type: 'inputNumber',
                 title: '产品期限',
                 dataIndex: 'deadline',
                 key: 'deadline',
-                placeholder: '这是一段描述',
-                maxLength: 16,
-                data: [
-                  {
-                    title: '天',
-                    value: 'day',
-                  },
-                  {
-                    title: '月',
-                    value: 'month',
-                  },
-                  {
-                    title: '季度',
-                    value: 'season',
-                  },
-                  {
-                    title: '年',
-                    value: 'year',
-                  },
-                ],
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: '天',
+                      value: 'day',
+                    },
+                    {
+                      title: '周',
+                      value: 'week',
+                    },
+                    {
+                      title: '月',
+                      value: 'month',
+                    },
+                    {
+                      title: '季度',
+                      value: 'season',
+                    },
+                    {
+                      title: '年',
+                      value: 'year',
+                    },
+                  ],
+                },
               },
               {
                 type: 'datePicker',
@@ -425,60 +447,85 @@ const get1Form = (_, res) => {
                 title: '年化利率',
                 dataIndex: 'yearate',
                 key: 'yearate',
-                addonAfter: '%',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: '%',
+                      value: '%',
+                    },
+                  ],
+                  accuracy: {
+                    stringMode: true,
+                    min: '-99.99',
+                    max: '99.99',
+                    step: '0.01',
+                  },
+                },
               },
               {
                 type: 'inputNumber',
                 title: '起存金额',
                 dataIndex: 'amount_mini',
                 key: 'amount_mini',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '递增金额',
                 dataIndex: 'amount_increa',
                 key: 'amount_increa',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '单人限额',
                 dataIndex: 'limit_single',
                 key: 'limit_single',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
               {
                 type: 'inputNumber',
                 title: '单日限额',
                 dataIndex: 'limit_day',
                 key: 'limit_day',
-                addonAfter: '元 (¥)',
-                stringMode: true,
-                min: '0',
-                max: '10',
-                step: '0.01',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
             ],
           },
@@ -579,11 +626,16 @@ const get1Form = (_, res) => {
                 title: '产品库存',
                 dataIndex: 'inventory',
                 key: 'inventory',
-                addonAfter: '元 (¥)',
-                stringMode: false,
-                min: '0',
-                max: '10',
-                placeholder: '这是一段描述',
+                data: {
+                  placeholder: '这是一段描述',
+                  addowAfter: [
+                    {
+                      title: 'RMB 元 (¥)',
+                      value: 'yuan',
+                    },
+                  ],
+                  controls: false,
+                },
               },
             ],
           },
@@ -603,8 +655,8 @@ const get1Form = (_, res) => {
                 component: 'button',
                 text: '下一步',
                 type: 'primary',
-                action: 'submit',
-                uri: '/products/edit/1',
+                action: 'next',
+                uri: '/products/add',
                 method: 'post',
               },
             ],
@@ -617,7 +669,7 @@ const get1Form = (_, res) => {
                 component: 'button',
                 text: '上一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'previous',
               },
               {
                 component: 'button',
@@ -629,7 +681,7 @@ const get1Form = (_, res) => {
                 component: 'button',
                 text: '下一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'next',
               },
             ],
           },
@@ -641,7 +693,7 @@ const get1Form = (_, res) => {
                 component: 'button',
                 text: '上一步',
                 type: 'primary',
-                action: 'submit',
+                action: 'previous',
               },
               {
                 component: 'button',
@@ -660,16 +712,24 @@ const get1Form = (_, res) => {
         ],
       },
       dataSource: {
-        id: '1',
         name: 'aaa',
       },
       meta: {
-        page: 0,
+        page: 2,
       },
     },
   });
 };
+
+const getDeleteMessage = (_, res) => {
+  res.json({
+    code: 200,
+    message: 'delete success',
+  });
+};
+
 export default {
   'GET /mock/manegement/product/edit/*': get1Form,
   'GET /mock/manegement/product/add': getForm,
+  'POST /api/product/add': getDeleteMessage,
 };

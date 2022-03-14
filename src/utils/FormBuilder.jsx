@@ -88,16 +88,15 @@ const FormBuiler = (data) => {
           <Form.Item {...basicAttr} className={styles.form_item}>
             <InputNumber
               disabled={field.disabled}
-              placeholder={field.placeholder}
+              placeholder={field.data?.placeholder}
               addonBefore={inputNumberSelectBefore}
               prefix={field.data?.prefix}
               addonAfter={InputNumberSelectAfter}
-              stringMode={field.stringMode}
-              min={field.min}
-              max={field.max}
-              step={field.step}
-              allowClear={true}
-              controls={false}
+              stringMode={field.data?.accuracy?.stringMode}
+              min={field.data?.accuracy?.min}
+              max={field.data?.accuracy?.max}
+              step={field.data?.accuracy?.step}
+              controls={field.data?.controls}
               style={{ width: '100%' }}
             />
           </Form.Item>
@@ -110,7 +109,7 @@ const FormBuiler = (data) => {
         );
       case 'select':
         return (
-          <Form.Item {...basicAttr} valuePropName="checked">
+          <Form.Item {...basicAttr} className={styles.form_item}>
             <Select>
               {(field.data || []).map((option) => {
                 return <Select.Option value={option.value}>{option.title}</Select.Option>;
