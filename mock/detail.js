@@ -38,22 +38,22 @@ const getProductsList = (_, res) => {
               {
                 value: 0,
                 title: '关闭',
-                color: 'geekblue'
+                color: 'geekblue',
               },
               {
                 value: 1,
                 title: '异常',
-                color: 'red'
+                color: 'red',
               },
               {
                 value: 2,
                 title: '运行中',
-                color: 'blue'
+                color: 'blue',
               },
               {
                 value: 3,
                 title: '已上线',
-                color: 'green'
+                color: 'green',
               },
             ],
           },
@@ -77,7 +77,7 @@ const getProductsList = (_, res) => {
                 action: 'delete',
                 danger: true,
                 uri: '/product/delete',
-                method: 'post'
+                method: 'post',
               },
             ],
           },
@@ -85,23 +85,10 @@ const getProductsList = (_, res) => {
         tableToolBar: [
           {
             component: 'button',
-            text: '+ 新建',
+            text: '返回',
             type: 'primary',
-            action: 'add',
-            uri: '/products/add'
-          },
-          {
-            component: 'button',
-            text: '刷新',
-            type: 'dashed',
-            action: 'reload'
-          },
-          {
-            component: 'button',
-            text: '回收站',
-            type: 'default',
-            action: 'recycle',
-            uri: '/products/recycle',
+            action: 'return',
+            uri: '/manegement/product',
           },
         ],
         batchToolBar: [
@@ -118,68 +105,64 @@ const getProductsList = (_, res) => {
       },
       dataSource: [
         {
-          title: '标题',
-          content: '内容',
+          title: '产品编号',
+          content: '1',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '产品名称',
+          content: '这是一个名称',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '产品期限',
+          content: '1年',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '起息日期',
+          content: '2022-3-5',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '到息日期',
+          content: '2023-3-5',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '年化利率',
+          content: '5.37 %',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '起存金额',
+          content: '10,000 ¥',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '递增金额',
+          content: '1,000 ¥',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '单人限额',
+          content: '1,000,000 ¥',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '单日限额',
+          content: '10,000 ¥',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '风险等级',
+          content: '低',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '结息方式',
+          content: '方式1',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '产品状态',
+          content: '已上线',
         },
         {
-          title: '标题',
-          content: '内容',
+          title: '购买权限',
+          content: '中',
         },
         {
-          title: '标题',
-          content: '内容',
-        },
-        {
-          title: '标题',
-          content: '内容',
+          title: '产品库存',
+          content: '1,000,000,000 ¥',
         },
       ],
       meta: {
@@ -192,5 +175,6 @@ const getProductsList = (_, res) => {
 };
 
 export default {
-  'GET /mock/detial': getProductsList,
+  'GET /mock/manegement/product/detail/1': getProductsList,
+  'GET /mock/manegement/product/detail/*': getProductsList,
 };

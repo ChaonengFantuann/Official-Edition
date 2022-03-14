@@ -322,6 +322,8 @@ const getForm = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
+                uri: '/product/add',
+                method: 'post',
               },
             ],
           },
