@@ -5,11 +5,26 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { Avatar, Card, Col } from 'antd';
+import { useRequest, history, useLocation } from 'umi';
 
 const CardBuilder = (
   cards, //<array>
 ) => {
   const { Meta } = Card;
+
+  // // let a = 0;
+  // const jumpShop = () => {
+  //   // a += 1;
+  //   // console.log(a);
+  //   // // console.log(id);
+  //   // if (a > 10) {
+  //     history.push(`/client/product/details/${id}`)
+
+  //   // }
+  //   console.log("aaa");
+  //   // console.log(card.key);
+
+  // }
 
   return (cards || []).map((card) => {
     return (
@@ -23,9 +38,22 @@ const CardBuilder = (
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             />
           }
-          actions={[<ShoppingCartOutlined key="shop" />, <EllipsisOutlined key="ellipsis" />]}
+          actions={[
+            <ShoppingCartOutlined
+              key="shop"
+              onClick={() => {
+                history.push(`/client/product/purchase/${card.key}`);
+              }}
+            />,
+            <EllipsisOutlined
+              key="ellipsis"
+              onClick={() => {
+                history.push(`/client/product/detail/${card.key}`);
+              }}
+            />,
+          ]}
         >
-          <Meta title={card.title} description={card.description} />
+          <Meta title={card.name} description={card.description} />
         </Card>
       </Col>
     );

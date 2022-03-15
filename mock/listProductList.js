@@ -130,6 +130,7 @@ const getProductsList = (_, res) => {
           interest_rate: 0.43,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 0,
+          description: '这是一段描述',
         },
         {
           key: 2,
@@ -137,6 +138,7 @@ const getProductsList = (_, res) => {
           interest_rate: 1.37,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 1,
+          description: '这是一段描述',
         },
         {
           key: 3,
@@ -144,6 +146,7 @@ const getProductsList = (_, res) => {
           interest_rate: 2.92,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 2,
+          description: '这是一段描述',
         },
         {
           key: 4,
@@ -151,6 +154,7 @@ const getProductsList = (_, res) => {
           interest_rate: 1.37,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 3,
+          description: '这是一段描述',
         },
         {
           key: 5,
@@ -158,6 +162,7 @@ const getProductsList = (_, res) => {
           interest_rate: 2.92,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 2,
+          description: '这是一段描述',
         },
         {
           key: 6,
@@ -165,6 +170,7 @@ const getProductsList = (_, res) => {
           interest_rate: 2.92,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 3,
+          description: '这是一段描述',
         },
         {
           key: 7,
@@ -172,6 +178,7 @@ const getProductsList = (_, res) => {
           interest_rate: 1.37,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 0,
+          description: '这是一段描述',
         },
         {
           key: 8,
@@ -179,6 +186,7 @@ const getProductsList = (_, res) => {
           interest_rate: 1.37,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 1,
+          description: '这是一段描述',
         },
         {
           key: 9,
@@ -186,6 +194,7 @@ const getProductsList = (_, res) => {
           interest_rate: 2.92,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 1,
+          description: '这是一段描述',
         },
         {
           key: 10,
@@ -193,6 +202,7 @@ const getProductsList = (_, res) => {
           interest_rate: 0.43,
           update_time: '2022-02-27T20:10:33+08:00',
           status: 3,
+          description: '这是一段描述',
         },
       ],
       meta: {

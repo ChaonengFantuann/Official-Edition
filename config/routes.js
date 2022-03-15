@@ -48,7 +48,7 @@ export default [
       },
       {
         name: '详情',
-        path: 'product/details',
+        path: 'product/detail/*',
         component: './ListList',
       },
       {

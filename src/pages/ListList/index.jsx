@@ -2,7 +2,6 @@ import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import { List, Card, Statistic, Row, Col, Button, Typography, Space } from 'antd';
 import { useRequest, history, useLocation } from 'umi';
 import ActionBuilder from '@/utils/ActionBuilder';
-import styles from './index.less';
 
 const Detal = () => {
   const { Title } = Typography;
@@ -11,11 +10,13 @@ const Detal = () => {
   // console.log();
   console.log(location.pathname);
   const init = useRequest(`http://localhost:8000/mock${location.pathname}`);
-  console.log(init);
-  // console.log(`http://localhost:8000/mock${location.pathname}}`);
+  // console.log(init);
+  // console.log(init.data?.layout.tableToolBar);
+  console.log(`http://localhost:8000/mock${location.pathname}}`);
   // http://localhost:8000/mock/manegement/product/detail/1
 
   function actionHandler(action) {
+    console.log(action.uri);
     switch (action.action) {
       case 'return':
         history.push(action.uri);
@@ -27,7 +28,7 @@ const Detal = () => {
 
   return (
     <PageContainer>
-      <Card className={styles.topCard}>
+      <Card>
         <Row gutter={[24, 36]}>
           <Col span={24}>
             <Space size="large">
