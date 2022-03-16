@@ -98,10 +98,10 @@ const CurrencyForm = () => {
     if (page === 1) {
       return (
         <Space direction="vertical" className={styles.messege}>
-          <Title level={5}>{`支付账户：${init.data?.dataSource.text.payment_account}`}</Title>
-          <Title level={5}>{`银行卡：${init.data?.dataSource.text.payment_method}`}</Title>
-          <Title level={5}>{`持有资产人姓名：${init.data?.dataSource.text.user_name}`}</Title>
-          <Title level={5}>{`购买金额：${init.data?.dataSource.text.purchase_amount}`}</Title>
+          <Title level={5}>支付账户：AntDEsign@example.com</Title>
+          <Title level={5}>银行卡：XXXX XXXX XXXX XXXX 某银行储蓄卡</Title>
+          <Title level={5}>持有资产人姓名：张三</Title>
+          <Title level={5}>购买金额：50,000.00</Title>
           <Divider />
         </Space>
       );

@@ -13,7 +13,7 @@ const FormBuiler = (data) => {
       case 'input':
         if (field.data?.addowBefore !== undefined) {
           // console.log(field.data.addowBefore.length);
-          console.log(field.data.addowAfter.length);
+          // console.log(field.data.addowAfter.length);
           if (field.data.addowBefore.length > 1) {
             var inputSelectBefore = (
               <Select defaultValue={field.data.addowBefore[0].value}>
@@ -52,6 +52,7 @@ const FormBuiler = (data) => {
               maxLength={field.data?.maxLength}
               allowClear={field.data?.allowClear}
               showCount={field.data?.showCount}
+              bordered={field.data?.bordered}
               style={{ width: '100%' }}
             />
           </Form.Item>
@@ -97,6 +98,7 @@ const FormBuiler = (data) => {
               max={field.data?.accuracy?.max}
               step={field.data?.accuracy?.step}
               controls={field.data?.controls}
+              bordered={field.data?.bordered}
               style={{ width: '100%' }}
             />
           </Form.Item>
