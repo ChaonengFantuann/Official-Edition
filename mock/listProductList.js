@@ -1,4 +1,4 @@
-const getProductsList = (_, res) => {
+const getProductsList1 = (_, res) => {
   res.json({
     success: true,
     message: '',
@@ -214,6 +214,662 @@ const getProductsList = (_, res) => {
   });
 };
 
+const getProductsList2 = (_, res) => {
+  res.json({
+    success: true,
+    message: '',
+    data: {
+      layout: {
+        tableColumn: [
+          {
+            title: '产品编号',
+            dataIndex: 'key',
+            key: 'key',
+            type: 'text',
+          },
+          {
+            title: '产品名称',
+            dataIndex: 'name',
+            key: 'name',
+            type: 'text',
+          },
+          {
+            title: '年化利率 (%)',
+            dataIndex: 'interest_rate',
+            key: 'interest_rate',
+            type: 'text',
+          },
+          {
+            title: '更新时间',
+            dataIndex: 'update_time',
+            key: 'update_time',
+            type: 'datetime',
+          },
+          {
+            title: '状态',
+            dataIndex: 'status',
+            key: 'status',
+            type: 'status',
+            data: [
+              {
+                value: 0,
+                title: '关闭',
+                color: 'geekblue',
+              },
+              {
+                value: 1,
+                title: '异常',
+                color: 'red',
+              },
+              {
+                value: 2,
+                title: '运行中',
+                color: 'blue',
+              },
+              {
+                value: 3,
+                title: '已上线',
+                color: 'green',
+              },
+            ],
+          },
+          {
+            title: '操作',
+            dataIndex: 'actions',
+            key: 'actions',
+            type: 'actions',
+            actions: [
+              {
+                component: 'button',
+                text: '编辑',
+                type: 'primary',
+                action: 'edit',
+                uri: '/manegement/product/edit/:key',
+              },
+              {
+                component: 'button',
+                text: '详情',
+                type: 'default',
+                action: 'detial',
+                uri: '/manegement/product/detail/:key',
+              },
+              {
+                component: 'button',
+                text: '删除',
+                type: 'default',
+                action: 'delete',
+                danger: true,
+                uri: '/product/delete',
+                method: 'post',
+              },
+            ],
+          },
+        ],
+        tableToolBar: [
+          {
+            component: 'button',
+            text: '+ 新建',
+            type: 'primary',
+            action: 'add',
+            uri: '/manegement/product/add',
+          },
+          {
+            component: 'button',
+            text: '刷新',
+            type: 'dashed',
+            action: 'reload',
+          },
+          {
+            component: 'button',
+            text: '回收站',
+            type: 'default',
+            action: 'recycle',
+            uri: '/manegement/product/recycle',
+          },
+        ],
+        batchToolBar: [
+          {
+            component: 'button',
+            text: '删除',
+            type: 'primary',
+            danger: true,
+            action: 'delete',
+            uri: '/product/delete',
+            method: 'post',
+          },
+        ],
+      },
+      dataSource: [
+        {
+          key: 1,
+          name: '这是一个产品名称',
+          interest_rate: 4.32,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 2,
+          name: '这是一个产品名称',
+          interest_rate: 0.43,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 3,
+          name: '这是一个产品名称',
+          interest_rate: 2.24,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 4,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 5,
+          name: '这是一个产品名称',
+          interest_rate: 1.13,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 6,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 7,
+          name: '这是一个产品名称',
+          interest_rate: 3.06,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 8,
+          name: '这是一个产品名称',
+          interest_rate: 1.37,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 9,
+          name: '这是一个产品名称',
+          interest_rate: 2.18,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 10,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+      ],
+      meta: {
+        total: 100,
+        per_page: 10,
+        page: 2,
+      },
+    },
+  });
+};
+
+const getProductsList3 = (_, res) => {
+  res.json({
+    success: true,
+    message: '',
+    data: {
+      layout: {
+        tableColumn: [
+          {
+            title: '产品编号',
+            dataIndex: 'key',
+            key: 'key',
+            type: 'text',
+          },
+          {
+            title: '产品名称',
+            dataIndex: 'name',
+            key: 'name',
+            type: 'text',
+          },
+          {
+            title: '年化利率 (%)',
+            dataIndex: 'interest_rate',
+            key: 'interest_rate',
+            type: 'text',
+          },
+          {
+            title: '更新时间',
+            dataIndex: 'update_time',
+            key: 'update_time',
+            type: 'datetime',
+          },
+          {
+            title: '状态',
+            dataIndex: 'status',
+            key: 'status',
+            type: 'status',
+            data: [
+              {
+                value: 0,
+                title: '关闭',
+                color: 'geekblue',
+              },
+              {
+                value: 1,
+                title: '异常',
+                color: 'red',
+              },
+              {
+                value: 2,
+                title: '运行中',
+                color: 'blue',
+              },
+              {
+                value: 3,
+                title: '已上线',
+                color: 'green',
+              },
+            ],
+          },
+          {
+            title: '操作',
+            dataIndex: 'actions',
+            key: 'actions',
+            type: 'actions',
+            actions: [
+              {
+                component: 'button',
+                text: '编辑',
+                type: 'primary',
+                action: 'edit',
+                uri: '/manegement/product/edit/:key',
+              },
+              {
+                component: 'button',
+                text: '详情',
+                type: 'default',
+                action: 'detial',
+                uri: '/manegement/product/detail/:key',
+              },
+              {
+                component: 'button',
+                text: '删除',
+                type: 'default',
+                action: 'delete',
+                danger: true,
+                uri: '/product/delete',
+                method: 'post',
+              },
+            ],
+          },
+        ],
+        tableToolBar: [
+          {
+            component: 'button',
+            text: '+ 新建',
+            type: 'primary',
+            action: 'add',
+            uri: '/manegement/product/add',
+          },
+          {
+            component: 'button',
+            text: '刷新',
+            type: 'dashed',
+            action: 'reload',
+          },
+          {
+            component: 'button',
+            text: '回收站',
+            type: 'default',
+            action: 'recycle',
+            uri: '/manegement/product/recycle',
+          },
+        ],
+        batchToolBar: [
+          {
+            component: 'button',
+            text: '删除',
+            type: 'primary',
+            danger: true,
+            action: 'delete',
+            uri: '/product/delete',
+            method: 'post',
+          },
+        ],
+      },
+      dataSource: [
+        {
+          key: 1,
+          name: '这是一个产品名称',
+          interest_rate: 4.32,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 2,
+          name: '这是一个产品名称',
+          interest_rate: 0.43,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 3,
+          name: '这是一个产品名称',
+          interest_rate: 2.24,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 4,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 5,
+          name: '这是一个产品名称',
+          interest_rate: 1.13,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 6,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 7,
+          name: '这是一个产品名称',
+          interest_rate: 3.06,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 8,
+          name: '这是一个产品名称',
+          interest_rate: 1.37,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 9,
+          name: '这是一个产品名称',
+          interest_rate: 2.18,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 10,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 11,
+          name: '这是一个产品名称',
+          interest_rate: 4.32,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 12,
+          name: '这是一个产品名称',
+          interest_rate: 0.43,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 13,
+          name: '这是一个产品名称',
+          interest_rate: 2.24,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 14,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 15,
+          name: '这是一个产品名称',
+          interest_rate: 1.13,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 3,
+          description: '这是一段描述',
+        },
+        {
+          key: 16,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+        {
+          key: 17,
+          name: '这是一个产品名称',
+          interest_rate: 3.06,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 1,
+          description: '这是一段描述',
+        },
+        {
+          key: 18,
+          name: '这是一个产品名称',
+          interest_rate: 1.37,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 19,
+          name: '这是一个产品名称',
+          interest_rate: 2.18,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 2,
+          description: '这是一段描述',
+        },
+        {
+          key: 20,
+          name: '这是一个产品名称',
+          interest_rate: 2.92,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+      ],
+      meta: {
+        total: 100,
+        per_page: 20,
+        page: 1,
+      },
+    },
+  });
+};
+
+const getProductsList4 = (_, res) => {
+  res.json({
+    success: true,
+    message: '',
+    data: {
+      layout: {
+        tableColumn: [
+          {
+            title: '产品编号',
+            dataIndex: 'key',
+            key: 'key',
+            type: 'text',
+          },
+          {
+            title: '产品名称',
+            dataIndex: 'name',
+            key: 'name',
+            type: 'text',
+          },
+          {
+            title: '年化利率 (%)',
+            dataIndex: 'interest_rate',
+            key: 'interest_rate',
+            type: 'text',
+          },
+          {
+            title: '更新时间',
+            dataIndex: 'update_time',
+            key: 'update_time',
+            type: 'datetime',
+          },
+          {
+            title: '状态',
+            dataIndex: 'status',
+            key: 'status',
+            type: 'status',
+            data: [
+              {
+                value: 0,
+                title: '关闭',
+                color: 'geekblue',
+              },
+              {
+                value: 1,
+                title: '异常',
+                color: 'red',
+              },
+              {
+                value: 2,
+                title: '运行中',
+                color: 'blue',
+              },
+              {
+                value: 3,
+                title: '已上线',
+                color: 'green',
+              },
+            ],
+          },
+          {
+            title: '操作',
+            dataIndex: 'actions',
+            key: 'actions',
+            type: 'actions',
+            actions: [
+              {
+                component: 'button',
+                text: '编辑',
+                type: 'primary',
+                action: 'edit',
+                uri: '/manegement/product/edit/:key',
+              },
+              {
+                component: 'button',
+                text: '详情',
+                type: 'default',
+                action: 'detial',
+                uri: '/manegement/product/detail/:key',
+              },
+              {
+                component: 'button',
+                text: '删除',
+                type: 'default',
+                action: 'delete',
+                danger: true,
+                uri: '/product/delete',
+                method: 'post',
+              },
+            ],
+          },
+        ],
+        tableToolBar: [
+          {
+            component: 'button',
+            text: '+ 新建',
+            type: 'primary',
+            action: 'add',
+            uri: '/manegement/product/add',
+          },
+          {
+            component: 'button',
+            text: '刷新',
+            type: 'dashed',
+            action: 'reload',
+          },
+          {
+            component: 'button',
+            text: '回收站',
+            type: 'default',
+            action: 'recycle',
+            uri: '/manegement/product/recycle',
+          },
+        ],
+        batchToolBar: [
+          {
+            component: 'button',
+            text: '删除',
+            type: 'primary',
+            danger: true,
+            action: 'delete',
+            uri: '/product/delete',
+            method: 'post',
+          },
+        ],
+      },
+      dataSource: [
+        {
+          key: 1,
+          name: '这是一个产品名称',
+          interest_rate: 0.43,
+          update_time: '2022-02-27T20:10:33+08:00',
+          status: 0,
+          description: '这是一段描述',
+        },
+      ],
+      meta: {
+        total: 100,
+        per_page: 10,
+        page: 1,
+      },
+    },
+  });
+};
+
 const getRecycleList = (_, res) => {
   res.json({
     success: true,
@@ -374,12 +1030,17 @@ const getRecycleList = (_, res) => {
 const getDeleteMessage = (_, res) => {
   res.json({
     code: 300,
-    message: 'delete success',
+    message: '删除成功',
   });
 };
 
 export default {
-  'GET /mock/manegement/product': getProductsList,
+  'GET /mock/manegement/product': getProductsList1,
+  'GET /mock/manegement/product&page=1&per_page=10': getProductsList1,
+  'GET /mock/manegement/product&page=2&per_page=10': getProductsList2,
+  'GET /mock/manegement/product&page=1&per_page=20': getProductsList3,
+  // 'GET /mock/manegement/product?key=1': getProductsList4,
+  // 'GET /mock/manegement/product&page=1&per_page=10?key=1': getProductsList4,
   'GET /mock/manegement/product/recycle': getRecycleList,
   'POST /product/delete': getDeleteMessage,
 };

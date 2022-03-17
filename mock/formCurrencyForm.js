@@ -296,7 +296,7 @@ const getForm = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
-                uri: '/product/add',
+                uri: '/product/add1',
                 method: 'post',
               },
             ],
@@ -322,7 +322,7 @@ const getForm = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
-                uri: '/product/add',
+                uri: '/product/add1',
                 method: 'post',
               },
             ],
@@ -348,6 +348,8 @@ const getForm = (_, res) => {
                 text: '完成',
                 type: 'primary',
                 action: 'submit',
+                uri: '/product/add2',
+                method: 'post',
               },
             ],
           },
@@ -723,15 +725,23 @@ const get1Form = (_, res) => {
   });
 };
 
-const getDeleteMessage = (_, res) => {
+
+const getFormMessage = (_, res) => {
   res.json({
-    code: 200,
-    message: 'delete success',
+    code: 300,
+    message: '提交成功',
+  });
+};
+const getFormMessage1 = (_, res) => {
+  res.json({
+    code: 301,
+    message: '',
   });
 };
 
 export default {
   'GET /mock/manegement/product/edit/*': get1Form,
   'GET /mock/manegement/product/add': getForm,
-  'POST /api/product/add': getDeleteMessage,
+  'POST /api/product/add2': getFormMessage,
+  'POST /api/product/add1': getFormMessage1,
 };

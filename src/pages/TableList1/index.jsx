@@ -44,7 +44,7 @@ const TableList1 = () => {
     };
   });
   // console.log(location.pathname);
-  // console.log(init);
+  console.log(init);
 
   const request = useRequest(
     (values) => {
@@ -61,12 +61,12 @@ const TableList1 = () => {
     },
     {
       manual: true,
-      // onSuccess: (data) => {
-      //   message.success({
-      //     content: data?.message,
-      //     key: 'process',
-      //   });
-      // },
+      onSuccess: (data) => {
+        message.success({
+          content: data?.message,
+          key: 'process',
+        });
+      },
       formatResult: (res) => {
         return res;
       },
@@ -134,7 +134,7 @@ const TableList1 = () => {
             });
           },
           onCancel() {
-            console.log('Cancel');
+            // console.log('Cancel');
           },
         });
       default:

@@ -4,7 +4,7 @@ const get1Form = (_, res) => {
     message: '',
     data: {
       page: {
-        title: 'Product Add',
+        title: 'Client Order',
         type: 'page',
       },
       layout: {
