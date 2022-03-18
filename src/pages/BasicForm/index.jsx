@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divide, message } from 'antd';
+import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divider, message } from 'antd';
 import { useRequest, useLocation, history } from 'umi';
 import FormBuiler from '@/utils/FormBuilder';
 import ActionBuilder from '@/utils/ActionBuilder';

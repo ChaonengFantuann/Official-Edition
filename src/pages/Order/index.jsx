@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divider } from 'antd';
+import { Form, Card, Row, Col, Space, Steps, Input, Typography, Divider, message } from 'antd';
 import { useRequest, useLocation, history } from 'umi';
 import FormBuiler from '@/utils/FormBuilder';
 import ActionBuilder from '@/utils/ActionBuilder';
@@ -37,15 +37,17 @@ const CurrencyForm = () => {
     {
       manual: true,
       onSuccess: (data) => {
-        if (data?.code === 200) {
+        if (data?.code === 301) {
           setPage(page + 1);
         }
-        // console.log(data);
-        // message.success({
-        //   content: (data?.message || []),
-        //   key: 'process',
-        // });
-        // history.goBack();
+        console.log(data);
+        if (data?.code === 300) {
+          message.success({
+            content: (data?.message || []),
+            key: 'process',
+          });
+          history.goBack();
+        }
       },
       formatResult: (res) => {
         return res;
@@ -95,13 +97,13 @@ const CurrencyForm = () => {
   // console.log(formInitValues);
 
   const OrderLayout = () => {
-    if (page === 1) {
+    if (page === 1 && init.data?.page.title === 'Client Order') {
       return (
         <Space direction="vertical" className={styles.messege}>
-          <Title level={5}>支付账户：AntDEsign@example.com</Title>
-          <Title level={5}>银行卡：XXXX XXXX XXXX XXXX 某银行储蓄卡</Title>
-          <Title level={5}>持有资产人姓名：张三</Title>
-          <Title level={5}>购买金额：50,000.00</Title>
+          <Title level={5}>{`支付账户：${init.data?.dataSource?.text?.payment_account}`}</Title>
+          <Title level={5}>{`银行卡：${init.data?.dataSource?.text?.payment_method}`}</Title>
+          <Title level={5}>{`持有资产人姓名：${init.data?.dataSource?.text?.user_name}`}</Title>
+          <Title level={5}>{`购买金额：${init.data?.dataSource?.text?.purchase_amount}`}</Title>
           <Divider />
         </Space>
       );
@@ -109,7 +111,7 @@ const CurrencyForm = () => {
     return null;
   };
 
-  const SuccessLayout = () => {};
+  const SuccessLayout = () => { };
 
   return (
     <PageContainer>
@@ -121,7 +123,6 @@ const CurrencyForm = () => {
               <Steps current={page}>
                 <Step title="第一步" subTitle="" description="" />
                 <Step title="第二步" subTitle="" description="" />
-                <Step title="第三步" subTitle="" description="" />
               </Steps>
             </Col>
             <Col sm={6} />

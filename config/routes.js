@@ -54,7 +54,7 @@ export default [
       {
         name: '购买',
         path: 'product/purchase/*',
-        component: './BasicForm',
+        component: './Order',
       },
     ],
   },

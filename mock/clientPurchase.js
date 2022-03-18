@@ -4,7 +4,7 @@ const getForm = (_, res) => {
     message: '',
     data: {
       page: {
-        title: 'Product Add',
+        title: 'Client Order',
         type: 'page',
       },
       layout: {
@@ -218,7 +218,7 @@ const getForm = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
-                uri: '/product/add',
+                uri: '/product/purchase1',
                 method: 'post',
               },
             ],
@@ -241,35 +241,11 @@ const getForm = (_, res) => {
               },
               {
                 component: 'button',
-                text: '下一步',
-                type: 'primary',
-                action: 'next',
-                uri: '/product/add',
-                method: 'post',
-              },
-            ],
-          },
-          {
-            name: 'actons3',
-            title: 'Actions3',
-            data: [
-              {
-                component: 'button',
-                text: '上一步',
-                type: 'primary',
-                action: 'previous',
-              },
-              {
-                component: 'button',
-                text: '清空',
-                type: 'default',
-                action: 'clear',
-              },
-              {
-                component: 'button',
                 text: '完成',
                 type: 'primary',
                 action: 'submit',
+                uri: '/product/purchase2',
+                method: 'post',
               },
             ],
           },
@@ -588,7 +564,7 @@ const get1Form = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
-                uri: '/products/add',
+                uri: '/product/purchase1',
                 method: 'post',
               },
             ],
@@ -614,6 +590,8 @@ const get1Form = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
+                uri: '/product/purchase1',
+                method: 'post',
               },
             ],
           },
@@ -638,6 +616,8 @@ const get1Form = (_, res) => {
                 text: '完成',
                 type: 'primary',
                 action: 'submit',
+                uri: '/product/purchase2',
+                method: 'post',
               },
             ],
           },
@@ -645,6 +625,12 @@ const get1Form = (_, res) => {
       },
       dataSource: {
         name: 'aaa',
+        text: {
+          payment_account: 'AntDEsign@example.com',
+          payment_method: 'XXXX XXXX XXXX XXXX 某银行储蓄卡',
+          user_name: '张三',
+          purchase_amount: '50,000.00',
+        },
       },
       meta: {
         page: 2,
@@ -653,15 +639,22 @@ const get1Form = (_, res) => {
   });
 };
 
-const getDeleteMessage = (_, res) => {
+const getFormMessage = (_, res) => {
   res.json({
-    code: 200,
-    message: 'delete success',
+    code: 300,
+    message: '提交成功',
+  });
+};
+const getFormMessage1 = (_, res) => {
+  res.json({
+    code: 301,
+    message: '',
   });
 };
 
 export default {
-  'GET /mock/client/product/purchase/*': get1Form,
+  'GET /mock/client/product/purchase/1': getForm,
   'GET /mock/client/product/purchase/*': getForm,
-  'POST /api/product/add': getDeleteMessage,
+  'POST /api/product/purchase2': getFormMessage,
+  'POST /api/product/purchase1': getFormMessage1,
 };
