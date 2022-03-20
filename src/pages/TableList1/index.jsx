@@ -220,6 +220,16 @@ const TableList1 = () => {
     );
   };
 
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+    init.run(
+      {
+        key_sort: JSON.stringify(sorter),
+        // key_sort_multiple: sorter?.column.sorter.multiple,
+      }
+    );
+  };
+
   return (
     <PageContainer>
       {searchLayout()}
@@ -230,6 +240,7 @@ const TableList1 = () => {
           columns={ColumnBuilder(init.data?.layout.tableColumn, actionHandler)}
           pagination={false}
           rowSelection={rowSelection}
+          onChange={onChange}
           loading={init.loading}
         ></Table>
         {afterTableLayout()}

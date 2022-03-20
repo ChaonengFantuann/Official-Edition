@@ -10,6 +10,10 @@ const getProductsList1 = (_, res) => {
             dataIndex: 'key',
             key: 'key',
             type: 'text',
+            sorter: {
+              compare: (a, b) => a.key - b.key,
+              multiple: 1,
+            },
           },
           {
             title: '产品名称',
@@ -22,12 +26,20 @@ const getProductsList1 = (_, res) => {
             dataIndex: 'interest_rate',
             key: 'interest_rate',
             type: 'text',
+            sorter: {
+              compare: (a, b) => a.interest_rate - b.interest_rate,
+              multiple: 2,
+            },
           },
           {
             title: '更新时间',
             dataIndex: 'update_time',
             key: 'update_time',
             type: 'datetime',
+            sorter: {
+              compare: (a, b) => a.update_time - b.update_time,
+              multiple: 3,
+            },
           },
           {
             title: '状态',
