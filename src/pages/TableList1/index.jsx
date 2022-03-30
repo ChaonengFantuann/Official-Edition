@@ -33,6 +33,7 @@ const TableList1 = () => {
   const location = useLocation();
 
   const init = useRequest((value) => {
+    console.log(value);
     // console.log(`http://localhost:8000/mock${location.pathname}${pageQuery}`);
     return {
       url: `http://localhost:8000/mock${location.pathname}${pageQuery}`,
@@ -48,13 +49,13 @@ const TableList1 = () => {
 
   const request = useRequest(
     (values) => {
-      // message.loading({ content: 'Processing...', key: 'process', duration: 0 })
+      message.loading({ content: 'Processing...', key: 'process', duration: 0 });
       const { uri, method, ...formValues } = values;
       return {
         url: `http://localhost:8000${uri}`,
         method: method,
-        // body: JSON.stringify(formValues),
-        data: {
+        body: JSON.stringify(formValues),
+        dataa: {
           ...formValues,
         },
       };
@@ -222,13 +223,11 @@ const TableList1 = () => {
 
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
-    init.run(
-      {
-        key_sort: JSON.stringify(sorter),
-        // key_sort_multiple: sorter?.column.sorter.multiple,
-      }
-    );
-  };
+    init.run({
+      key_sort: JSON.stringify(sorter),
+      // key_sort_multiple: sorter?.column.sorter.multiple,
+    });
+  }
 
   return (
     <PageContainer>

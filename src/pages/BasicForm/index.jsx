@@ -43,7 +43,7 @@ const CurrencyForm = () => {
         console.log(data);
         if (data?.code === 300) {
           message.success({
-            content: (data?.message || []),
+            content: data?.message || [],
             key: 'process',
           });
           history.goBack();
@@ -111,7 +111,7 @@ const CurrencyForm = () => {
     return null;
   };
 
-  const SuccessLayout = () => { };
+  const SuccessLayout = () => {};
 
   return (
     <PageContainer>
@@ -121,9 +121,21 @@ const CurrencyForm = () => {
             <Col sm={6} />
             <Col sm={12} className={styles.step}>
               <Steps current={page}>
-                <Step title="第一步" subTitle="" description="" />
-                <Step title="第二步" subTitle="" description="" />
-                <Step title="第三步" subTitle="" description="" />
+                <Step
+                  title={init.data?.layout?.tabs[0]?.title}
+                  subTitle={init.data?.layout?.tabs[0]?.subTitle}
+                  description={init.data?.layout?.tabs[0]?.description}
+                />
+                <Step
+                  title={init.data?.layout?.tabs[1]?.title}
+                  subTitle={init.data?.layout?.tabs[1]?.subTitle}
+                  description={init.data?.layout?.tabs[1]?.description}
+                />
+                <Step
+                  title={init.data?.layout?.tabs[2]?.title}
+                  subTitle={init.data?.layout?.tabs[2]?.subTitle}
+                  description={init.data?.layout?.tabs[2]?.description}
+                />
               </Steps>
             </Col>
             <Col sm={6} />

@@ -1,5 +1,17 @@
 export default [
   {
+    name: 'ProTable',
+    icon: 'table',
+    path: '/pro-table',
+    component: './ProTableLearn',
+  },
+  {
+    name: '大屏端',
+    icon: 'crown',
+    path: '/exhibition',
+    component: './Exhibition',
+  },
+  {
     path: '/login',
     component: './Login',
     layout: false,

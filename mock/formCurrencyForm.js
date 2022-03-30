@@ -10,8 +10,9 @@ const getForm = (_, res) => {
       layout: {
         tabs: [
           {
-            name: 'name1',
-            title: 'title1',
+            title: '第一步',
+            subTitle: '第一个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'inputNumber',
@@ -20,6 +21,12 @@ const getForm = (_, res) => {
                 key: 'id',
                 data: {
                   placeholder: '这是一段描述',
+                  rules: [
+                    {
+                      required: true,
+                      message: '这是一段提示信息!',
+                    },
+                  ],
                 },
               },
               {
@@ -79,8 +86,9 @@ const getForm = (_, res) => {
             ],
           },
           {
-            name: 'name2',
-            title: 'title2',
+            title: '第而步',
+            subTitle: '第二个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'inputNumber',
@@ -170,8 +178,9 @@ const getForm = (_, res) => {
             ],
           },
           {
-            name: 'name3',
-            title: 'title3',
+            title: '第三步',
+            subTitle: '第三个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'select',
@@ -354,9 +363,6 @@ const getForm = (_, res) => {
             ],
           },
         ],
-      },
-      meta: {
-        page: 2,
       },
     },
   });
@@ -724,7 +730,6 @@ const get1Form = (_, res) => {
     },
   });
 };
-
 
 const getFormMessage = (_, res) => {
   res.json({

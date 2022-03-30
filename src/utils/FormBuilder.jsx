@@ -11,19 +11,19 @@ const FormBuiler = (data) => {
     };
     switch (field.type) {
       case 'input':
-        if (field.data?.addowBefore !== undefined) {
-          // console.log(field.data.addowBefore.length);
+        if (field.data?.addonBefore !== undefined) {
+          // console.log(field.data.addonBefore.length);
           // console.log(field.data.addowAfter.length);
-          if (field.data.addowBefore.length > 1) {
+          if (field.data.addonBefore.length > 1) {
             var inputSelectBefore = (
-              <Select defaultValue={field.data.addowBefore[0].value}>
-                {(field.data.addowBefore || []).map((option) => {
+              <Select defaultValue={field.data.addonBefore[0].value}>
+                {(field.data.addonBefore || []).map((option) => {
                   return <Select.Option value={option.value}>{option.title}</Select.Option>;
                 })}
               </Select>
             );
           } else {
-            var inputSelectBefore = field.data.addowBefore[0].title;
+            var inputSelectBefore = field.data.addonBefore[0].title;
           }
         }
         if (field.data?.addowAfter !== undefined) {
@@ -58,18 +58,18 @@ const FormBuiler = (data) => {
           </Form.Item>
         );
       case 'inputNumber':
-        if (field.data?.addowBefore !== undefined) {
-          // console.log(field.data.addowBefore.length);
-          if (field.data.addowBefore.length > 1) {
+        if (field.data?.addonBefore !== undefined) {
+          // console.log(field.data.addonBefore.length);
+          if (field.data.addonBefore.length > 1) {
             var inputNumberSelectBefore = (
-              <Select defaultValue={field.data.addowBefore[0].value}>
-                {(field.data.addowBefore || []).map((option) => {
+              <Select defaultValue={field.data.addonBefore[0].value}>
+                {(field.data.addonBefore || []).map((option) => {
                   return <Select.Option value={option.value}>{option.title}</Select.Option>;
                 })}
               </Select>
             );
           } else {
-            var inputNumberSelectBefore = field.data.addowBefore[0].title;
+            var inputNumberSelectBefore = field.data.addonBefore[0].title;
           }
         }
         if (field.data?.addowAfter !== undefined) {
@@ -86,7 +86,7 @@ const FormBuiler = (data) => {
           }
         }
         return (
-          <Form.Item {...basicAttr} className={styles.form_item}>
+          <Form.Item {...basicAttr} className={styles.form_item} rules={field.data.rules}>
             <InputNumber
               disabled={field.disabled}
               placeholder={field.data?.placeholder}
