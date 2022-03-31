@@ -1,20 +1,34 @@
 export default [
   {
-    name: 'ProTable',
-    icon: 'table',
-    path: '/pro-table',
-    component: './ProTableLearn',
+    path: '/user',
+    layout: false,
+    routes: [
+      {
+        path: '/user',
+        routes: [
+          {
+            name: 'login',
+            path: '/user/login',
+            component: './user/Login',
+          },
+        ],
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+  {
+    name: 'Demo',
+    icon: 'crown',
+    path: '/demo',
+    component: './Demo',
   },
   {
     name: '大屏端',
     icon: 'crown',
     path: '/exhibition',
     component: './Exhibition',
-  },
-  {
-    path: '/login',
-    component: './Login',
-    layout: false,
   },
   {
     name: '管理端',
@@ -24,12 +38,12 @@ export default [
       {
         name: '产品',
         path: 'product',
-        component: './TableList1',
+        component: './TableList',
       },
       {
         name: '回收站',
         path: 'product/recycle',
-        component: './TableList1',
+        component: './TableList',
       },
       {
         name: '详情',

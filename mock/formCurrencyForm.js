@@ -744,9 +744,17 @@ const getFormMessage1 = (_, res) => {
   });
 };
 
+const getOrchestration = (_, res) => {
+  res.json({
+    code: 300,
+    message: '提交成功',
+  });
+};
+
 export default {
   'GET /mock/manegement/product/edit/*': get1Form,
   'GET /mock/manegement/product/add': getForm,
   'POST /api/product/add2': getFormMessage,
   'POST /api/product/add1': getFormMessage1,
+  'POST /api/management/orchestration': getOrchestration,
 };

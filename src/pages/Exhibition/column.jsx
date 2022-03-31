@@ -18,7 +18,7 @@ const DemoColumn = () => {
     },
     {
       type: '美容洗护',
-      sales: 145,
+      sales: 58,
     },
     {
       type: '母婴用品',

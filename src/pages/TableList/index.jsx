@@ -1,403 +1,252 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, message, Input, Drawer } from 'antd';
-import React, { useState, useRef } from 'react';
-import { useIntl, FormattedMessage } from 'umi';
-import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
-import ProTable from '@ant-design/pro-table';
-import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
-import ProDescriptions from '@ant-design/pro-descriptions';
-import UpdateForm from './components/UpdateForm';
-import { rule, addRule, updateRule, removeRule } from '@/services/ant-design-pro/api';
-/**
- * @en-US Add node
- * @zh-CN 添加节点
- * @param fields
- */
+import { useState, useEffect } from 'react';
+import { useRequest, history, useLocation } from 'umi';
+import { useToggle } from 'ahooks';
+import { stringify } from 'query-string';
+import {
+  Button,
+  Card,
+  Pagination,
+  Space,
+  Table,
+  Tooltip,
+  Form,
+  Row,
+  Col,
+  Modal,
+  message,
+} from 'antd';
+import { FooterToolbar, PageContainer } from '@ant-design/pro-layout';
+import { SearchOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import ColumnBuilder from '@/utils/ColumnBuilder';
+import SearchBuiler from '@/utils/SearchBuilder';
+import ActionBuilder from '@/utils/ActionBuilder';
+import { submitFieldsAdaptor } from '@/utils/helper';
+import styles from './index.less';
 
-const handleAdd = async (fields) => {
-  const hide = message.loading('正在添加');
+const TableList1 = () => {
+  const [pageQuery, setPageQuery] = useState('');
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [searchVisible, setSearchVisible] = useToggle(false);
 
-  try {
-    await addRule({ ...fields });
-    hide();
-    message.success('Added successfully');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('Adding failed, please try again!');
-    return false;
-  }
-};
-/**
- * @en-US Update node
- * @zh-CN 更新节点
- *
- * @param fields
- */
+  const [searchForm] = Form.useForm();
+  const { confirm } = Modal;
+  const location = useLocation();
 
-const handleUpdate = async (fields) => {
-  const hide = message.loading('Configuring');
+  const init = useRequest((value) => {
+    console.log(value);
+    // console.log(`http://localhost:8000/mock${location.pathname}${pageQuery}`);
+    return {
+      url: `http://localhost:8000/mock${location.pathname}${pageQuery}`,
+      params: value,
+      paramsSerializer: (params) => {
+        // console.log(params);
+        return stringify(params, { arrayFormat: 'comma', skipEmptyString: true, skipNull: true });
+      },
+    };
+  });
+  // console.log(location.pathname);
+  console.log(init);
 
-  try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
-    });
-    hide();
-    message.success('Configuration is successful');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('Configuration failed, please try again!');
-    return false;
-  }
-};
-/**
- *  Delete node
- * @zh-CN 删除节点
- *
- * @param selectedRows
- */
-
-const handleRemove = async (selectedRows) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
-
-  try {
-    await removeRule({
-      key: selectedRows.map((row) => row.key),
-    });
-    hide();
-    message.success('Deleted successfully and will refresh soon');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('Delete failed, please try again');
-    return false;
-  }
-};
-
-const TableList = () => {
-  /**
-   * @en-US Pop-up window of new window
-   * @zh-CN 新建窗口的弹窗
-   *  */
-  const [createModalVisible, handleModalVisible] = useState(false);
-  /**
-   * @en-US The pop-up window of the distribution update window
-   * @zh-CN 分布更新窗口的弹窗
-   * */
-
-  const [updateModalVisible, handleUpdateModalVisible] = useState(false);
-  const [showDetail, setShowDetail] = useState(false);
-  const actionRef = useRef();
-  const [currentRow, setCurrentRow] = useState();
-  const [selectedRowsState, setSelectedRows] = useState([]);
-  /**
-   * @en-US International configuration
-   * @zh-CN 国际化配置
-   * */
-
-  const intl = useIntl();
-  const columns = [
+  const request = useRequest(
+    (values) => {
+      message.loading({ content: 'Processing...', key: 'process', duration: 0 });
+      const { uri, method, ...formValues } = values;
+      return {
+        url: `http://localhost:8000${uri}`,
+        method: method,
+        body: JSON.stringify(formValues),
+        dataa: {
+          ...formValues,
+        },
+      };
+    },
     {
-      title: (
-        <FormattedMessage
-          id="pages.searchTable.updateForm.ruleName.nameLabel"
-          defaultMessage="Rule name"
-        />
-      ),
-      dataIndex: 'name',
-      tip: 'The rule name is the unique key',
-      render: (dom, entity) => {
-        return (
-          <a
+      manual: true,
+      onSuccess: (data) => {
+        message.success({
+          content: data?.message,
+          key: 'process',
+        });
+      },
+      formatResult: (res) => {
+        return res;
+      },
+    },
+  );
+
+  useEffect(() => {
+    init.run();
+  }, [pageQuery]);
+
+  const paginationChangeHandler = (page, per_page) => {
+    console.log(page, per_page);
+    setPageQuery(`&page=${page}&per_page=${per_page}`);
+  };
+
+  const onFinish = (value) => {
+    init.run(submitFieldsAdaptor(value));
+  };
+
+  // record < object > : {
+  //   key: <number>
+  //   name: <string>
+  //   interest_rate: <number>
+  //   update_time: <string>
+  //   status: <number>
+  //  },
+  function actionHandler(action, record) {
+    // console.log(record);
+    switch (action.action) {
+      case 'add':
+      case 'recycle':
+      case 'display':
+        history.push(action.uri);
+        break;
+      case 'reload':
+        // console.log('reload');
+        init.run();
+        break;
+      case 'edit':
+      case 'detial':
+        // action.uri: /products/edit/:xxx
+        // field: 正则表达式匹配的字段
+        const uri = (action.uri || '').replace(/:\w+/g, (field) => {
+          return record[field.replace(':', '')];
+        });
+        history.push(uri);
+        break;
+      //未优化
+      case 'delete':
+        // case 'deletePermanently':
+        // case 'restore':
+        // console.log(record);
+        confirm({
+          title: '您确定要删除这个产品吗？',
+          icon: <ExclamationCircleOutlined />,
+          content: '您还可以在回收站中恢复',
+          okText: '确定',
+          cancelText: '取消',
+          onOk() {
+            return request.run({
+              uri: action.uri,
+              method: action.method,
+              type: action.action,
+              ids: Object.keys(record).length ? [record.key] : selectedRowKeys,
+            });
+          },
+          onCancel() {
+            // console.log('Cancel');
+          },
+        });
+      default:
+        break;
+    }
+  }
+
+  const searchLayout = () => {
+    return (
+      searchVisible && (
+        <Card>
+          <Form onFinish={onFinish} form={searchForm}>
+            <Row gutter={24}>{SearchBuiler(init.data?.layout.tableColumn)}</Row>
+            <Row>
+              <Col sm={24} className={styles.searchToolbar}>
+                <Space>
+                  <Button type="primary" htmlType="submit">
+                    提交
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      init.run();
+                      searchForm.resetFields(); //清空表单
+                    }}
+                  >
+                    清空
+                  </Button>
+                </Space>
+              </Col>
+            </Row>
+          </Form>
+        </Card>
+      )
+    );
+  };
+
+  const beforeTableLayout = () => {
+    return (
+      <Space className={styles.tableToolBar} size={'middle'}>
+        {ActionBuilder(init.data?.layout.tableToolBar, actionHandler)}
+        <Tooltip title="search">
+          <Button
+            shape="circle"
+            icon={<SearchOutlined />}
             onClick={() => {
-              setCurrentRow(entity);
-              setShowDetail(true);
+              setSearchVisible.toggle();
             }}
-          >
-            {dom}
-          </a>
-        );
-      },
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
-      dataIndex: 'desc',
-      valueType: 'textarea',
-    },
-    {
-      title: (
-        <FormattedMessage
-          id="pages.searchTable.titleCallNo"
-          defaultMessage="Number of service calls"
-        />
-      ),
-      dataIndex: 'callNo',
-      sorter: true,
-      hideInForm: true,
-      renderText: (val) =>
-        `${val}${intl.formatMessage({
-          id: 'pages.searchTable.tenThousand',
-          defaultMessage: ' 万 ',
-        })}`,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="Status" />,
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.default"
-              defaultMessage="Shut down"
-            />
-          ),
-          status: 'Default',
-        },
-        1: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.running" defaultMessage="Running" />
-          ),
-          status: 'Processing',
-        },
-        2: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
-          ),
-          status: 'Success',
-        },
-        3: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.abnormal"
-              defaultMessage="Abnormal"
-            />
-          ),
-          status: 'Error',
-        },
-      },
-    },
-    {
-      title: (
-        <FormattedMessage
-          id="pages.searchTable.titleUpdatedAt"
-          defaultMessage="Last scheduled time"
-        />
-      ),
-      sorter: true,
-      dataIndex: 'updatedAt',
-      valueType: 'dateTime',
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
-        const status = form.getFieldValue('status');
-
-        if (`${status}` === '0') {
-          return false;
-        }
-
-        if (`${status}` === '3') {
-          return (
-            <Input
-              {...rest}
-              placeholder={intl.formatMessage({
-                id: 'pages.searchTable.exception',
-                defaultMessage: 'Please enter the reason for the exception!',
-              })}
-            />
-          );
-        }
-
-        return defaultRender(item);
-      },
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-        <a
-          key="config"
-          onClick={() => {
-            handleUpdateModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
-        </a>,
-        <a key="subscribeAlert" href="https://procomponents.ant.design/">
-          <FormattedMessage
-            id="pages.searchTable.subscribeAlert"
-            defaultMessage="Subscribe to alerts"
+            type={searchVisible ? 'primary' : 'default'}
           />
-        </a>,
-      ],
+        </Tooltip>
+      </Space>
+    );
+  };
+
+  const rowSelection = {
+    selectedRowKeys: selectedRowKeys,
+    onChange: (_selectedRowKeys, selectedRows) => {
+      console.log(_selectedRowKeys, selectedRows);
+      setSelectedRowKeys(_selectedRowKeys);
     },
-  ];
+  };
+
+  const afterTableLayout = () => {
+    return (
+      <Pagination
+        className={styles.pagination}
+        total={init.data?.meta.total || 0}
+        current={init.data?.meta.page || 1}
+        pageSize={init.data?.meta.per_page || 10}
+        showSizeChanger
+        showQuickJumper
+        onChange={paginationChangeHandler}
+        onShowSizeChange={paginationChangeHandler}
+      />
+    );
+  };
+
+  const batchToolBar = () => {
+    return (
+      selectedRowKeys.length > 0 && (
+        <Space>{ActionBuilder(init.data?.layout.batchToolBar, actionHandler)}</Space>
+      )
+    );
+  };
+
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+    init.run({
+      key_sort: JSON.stringify(sorter),
+      // key_sort_multiple: sorter?.column.sorter.multiple,
+    });
+  }
+
   return (
     <PageContainer>
-      <ProTable
-        headerTitle={intl.formatMessage({
-          id: 'pages.searchTable.title',
-          defaultMessage: 'Enquiry form',
-        })}
-        actionRef={actionRef}
-        rowKey="key"
-        search={{
-          labelWidth: 120,
-        }}
-        toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              handleModalVisible(true);
-            }}
-          >
-            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
-          </Button>,
-        ]}
-        request={rule}
-        columns={columns}
-        rowSelection={{
-          onChange: (_, selectedRows) => {
-            setSelectedRows(selectedRows);
-          },
-        }}
-      />
-      {selectedRowsState?.length > 0 && (
-        <FooterToolbar
-          extra={
-            <div>
-              <FormattedMessage id="pages.searchTable.chosen" defaultMessage="Chosen" />{' '}
-              <a
-                style={{
-                  fontWeight: 600,
-                }}
-              >
-                {selectedRowsState.length}
-              </a>{' '}
-              <FormattedMessage id="pages.searchTable.item" defaultMessage="项" />
-              &nbsp;&nbsp;
-              <span>
-                <FormattedMessage
-                  id="pages.searchTable.totalServiceCalls"
-                  defaultMessage="Total number of service calls"
-                />{' '}
-                {selectedRowsState.reduce((pre, item) => pre + item.callNo, 0)}{' '}
-                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
-              </span>
-            </div>
-          }
-        >
-          <Button
-            onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
-          >
-            <FormattedMessage
-              id="pages.searchTable.batchDeletion"
-              defaultMessage="Batch deletion"
-            />
-          </Button>
-          <Button type="primary">
-            <FormattedMessage
-              id="pages.searchTable.batchApproval"
-              defaultMessage="Batch approval"
-            />
-          </Button>
-        </FooterToolbar>
-      )}
-      <ModalForm
-        title={intl.formatMessage({
-          id: 'pages.searchTable.createForm.newRule',
-          defaultMessage: 'New rule',
-        })}
-        width="400px"
-        visible={createModalVisible}
-        onVisibleChange={handleModalVisible}
-        onFinish={async (value) => {
-          const success = await handleAdd(value);
-
-          if (success) {
-            handleModalVisible(false);
-
-            if (actionRef.current) {
-              actionRef.current.reload();
-            }
-          }
-        }}
-      >
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage
-                  id="pages.searchTable.ruleName"
-                  defaultMessage="Rule name is required"
-                />
-              ),
-            },
-          ]}
-          width="md"
-          name="name"
-        />
-        <ProFormTextArea width="md" name="desc" />
-      </ModalForm>
-      <UpdateForm
-        onSubmit={async (value) => {
-          const success = await handleUpdate(value);
-
-          if (success) {
-            handleUpdateModalVisible(false);
-            setCurrentRow(undefined);
-
-            if (actionRef.current) {
-              actionRef.current.reload();
-            }
-          }
-        }}
-        onCancel={() => {
-          handleUpdateModalVisible(false);
-
-          if (!showDetail) {
-            setCurrentRow(undefined);
-          }
-        }}
-        updateModalVisible={updateModalVisible}
-        values={currentRow || {}}
-      />
-
-      <Drawer
-        width={600}
-        visible={showDetail}
-        onClose={() => {
-          setCurrentRow(undefined);
-          setShowDetail(false);
-        }}
-        closable={false}
-      >
-        {currentRow?.name && (
-          <ProDescriptions
-            column={2}
-            title={currentRow?.name}
-            request={async () => ({
-              data: currentRow || {},
-            })}
-            params={{
-              id: currentRow?.name,
-            }}
-            columns={columns}
-          />
-        )}
-      </Drawer>
+      {searchLayout()}
+      <Card>
+        {beforeTableLayout()}
+        <Table
+          dataSource={init.data?.dataSource}
+          columns={ColumnBuilder(init.data?.layout.tableColumn, actionHandler)}
+          pagination={false}
+          rowSelection={rowSelection}
+          onChange={onChange}
+          loading={init.loading}
+        ></Table>
+        {afterTableLayout()}
+        <FooterToolbar extra={batchToolBar()} />
+      </Card>
     </PageContainer>
   );
 };
 
-export default TableList;
+export default TableList1;
