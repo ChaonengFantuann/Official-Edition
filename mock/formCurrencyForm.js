@@ -367,7 +367,6 @@ const getForm = (_, res) => {
     },
   });
 };
-
 const get1Form = (_, res) => {
   res.json({
     success: true,
@@ -380,8 +379,9 @@ const get1Form = (_, res) => {
       layout: {
         tabs: [
           {
-            name: 'name1',
-            title: 'title1',
+            title: '第一步',
+            subTitle: '第一个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'inputNumber',
@@ -390,6 +390,12 @@ const get1Form = (_, res) => {
                 key: 'id',
                 data: {
                   placeholder: '这是一段描述',
+                  rules: [
+                    {
+                      required: true,
+                      message: '这是一段提示信息!',
+                    },
+                  ],
                 },
               },
               {
@@ -449,8 +455,9 @@ const get1Form = (_, res) => {
             ],
           },
           {
-            name: 'name2',
-            title: 'title2',
+            title: '第而步',
+            subTitle: '第二个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'inputNumber',
@@ -540,8 +547,9 @@ const get1Form = (_, res) => {
             ],
           },
           {
-            name: 'name3',
-            title: 'title3',
+            title: '第三步',
+            subTitle: '第三个副标题',
+            description: '这是一段描述',
             data: [
               {
                 type: 'select',
@@ -666,7 +674,7 @@ const get1Form = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
-                uri: '/products/add',
+                uri: '/product/add1',
                 method: 'post',
               },
             ],
@@ -692,6 +700,8 @@ const get1Form = (_, res) => {
                 text: '下一步',
                 type: 'primary',
                 action: 'next',
+                uri: '/product/add1',
+                method: 'post',
               },
             ],
           },
@@ -716,16 +726,15 @@ const get1Form = (_, res) => {
                 text: '完成',
                 type: 'primary',
                 action: 'submit',
+                uri: '/product/add2',
+                method: 'post',
               },
             ],
           },
         ],
       },
       dataSource: {
-        name: 'aaa',
-      },
-      meta: {
-        page: 2,
+        id: '1',
       },
     },
   });

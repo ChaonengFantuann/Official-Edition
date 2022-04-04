@@ -19,44 +19,54 @@ export default [
     ],
   },
   {
-    name: 'Demo',
-    icon: 'crown',
-    path: '/demo',
-    component: './Demo',
-  },
-  {
     name: '大屏端',
     icon: 'crown',
     path: '/exhibition',
     component: './Exhibition',
   },
   {
-    name: '管理端',
+    name: 'list',
     icon: 'crown',
     path: '/manegement',
     routes: [
       {
-        name: '产品',
+        name: 'product-list',
+        // icon: 'table',
         path: 'product',
         component: './TableList',
       },
       {
-        name: '回收站',
+        name: '流程',
+        path: 'process',
+        component: './TableList',
+      },
+      {
+        // name: '添加',
+        path: 'process/add',
+        component: './Demo',
+      },
+      {
+        // name: '添加',
+        path: 'process/edit/*',
+        component: './Demo',
+      },
+      {
+        // name: '回收站',
         path: 'product/recycle',
         component: './TableList',
       },
       {
-        name: '详情',
+        // name: '详情',
         path: 'product/detail/*',
         component: './ListList',
       },
       {
-        name: '添加',
+        // name: '添加',
         path: 'product/add',
         component: './BasicForm',
       },
       {
-        name: '编辑',
+        // name: '编辑',
         path: 'product/edit/*',
         component: './BasicForm',
       },

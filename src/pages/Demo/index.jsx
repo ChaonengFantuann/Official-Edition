@@ -1,27 +1,8 @@
 import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import {
-  Form,
-  Card,
-  Row,
-  Col,
-  Space,
-  Steps,
-  Input,
-  Typography,
-  Divider,
-  message,
-  Radio,
-  Select,
-  TreeSelect,
-  Button,
-  Switch,
-} from 'antd';
+import { Form, Card, Row, Col, Input, message, Select, TreeSelect, Button, Switch } from 'antd';
 import { useRequest, useLocation, history } from 'umi';
-import FormBuiler from '@/utils/FormBuilder';
-import ActionBuilder from '@/utils/ActionBuilder';
 import { submitFieldsAdaptor } from '@/utils/helper';
-import Title from 'antd/lib/skeleton/Title';
 
 const Demo = () => {
   const { Option } = Select;
@@ -82,9 +63,14 @@ const Demo = () => {
     setC(checked);
   };
 
+  const handleClick = () => {
+    console.log('aaa');
+    history.push('/manegement/process');
+  };
+
   return (
     <PageContainer>
-      <Card>
+      <Card style={{ paddingBottom: '50px' }}>
         <Form
           onFinish={onFinish}
           initialValues={{
@@ -101,6 +87,16 @@ const Demo = () => {
           }}
         >
           <Row>
+            <Col span={24}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  handleClick();
+                }}
+              >
+                返回
+              </Button>
+            </Col>
             <Col span={6} />
             <Col span={12}>
               <Row gutter={[0, 36]}>
@@ -173,19 +169,24 @@ const Demo = () => {
                     </Select>
                   </Form.Item>
                 </Col>
-                <Col span={12}>
+                {/* <Col span={12}>
                   <Form.Item label="利息计算接口" name="f">
                     <Switch />
                   </Form.Item>
                 </Col>
-                <Col span={12}></Col>
-                <Col span={12}>
+                <Col span={12}></Col> */}
+                <Col span={8}>
                   <Form.Item label="库存锁定接口" name="g">
                     <Switch />
                   </Form.Item>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item label="库存锁定接口" name="h">
+                    <Switch />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item label="利息计算接口" name="f">
                     <Switch />
                   </Form.Item>
                 </Col>
@@ -194,13 +195,13 @@ const Demo = () => {
                     <Switch />
                   </Form.Item>
                 </Col>
-                <Col span={12}></Col>
+                {/* <Col span={12}></Col> */}
                 <Col span={12}>
                   <Form.Item label="日志录入接口" name="j">
                     <Switch />
                   </Form.Item>
                 </Col>
-                <Col span={12}></Col>
+                {/* <Col span={12}></Col> */}
                 <Col span={24} style={{ textAlign: 'center' }}>
                   <Button type="primary" htmlType="submit" style={{ width: '40%' }}>
                     提交

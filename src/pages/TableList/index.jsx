@@ -36,7 +36,7 @@ const TableList1 = () => {
     console.log(value);
     // console.log(`http://localhost:8000/mock${location.pathname}${pageQuery}`);
     return {
-      url: `http://localhost:8000/mock${location.pathname}${pageQuery}`,
+      url: `http://localhost:8000/api${location.pathname}${pageQuery}`,
       params: value,
       paramsSerializer: (params) => {
         // console.log(params);

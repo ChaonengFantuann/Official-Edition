@@ -59,4 +59,5 @@ export default {
   'menu.form.currency-form': '通用表单',
   'menu.list.recycle-list': '回收站',
   'menu.client.product-list': '客户端产品列表',
+  'menu.list.product-list': '客户端产品列表',
 };

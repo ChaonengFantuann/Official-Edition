@@ -18,6 +18,8 @@ const CurrencyForm = () => {
   // console.log(loaction.pathname);
 
   const init = useRequest(`http://localhost:8000/mock${loaction.pathname}`);
+  // const init = useRequest(`106.14.187.88:8083/addProductPage`);
+  console.log(init);
   // console.log(`http://localhost:8000/mock${loaction.pathname.replace('/order', '')}`);
   // console.log(init);
 
@@ -122,7 +124,7 @@ const CurrencyForm = () => {
             <Col sm={12} className={styles.step}>
               <Steps current={page}>
                 <Step
-                  title={init.data?.layout?.tabs[0]?.title}
+                  title={init.body?.layout?.tabs[0]?.title}
                   subTitle={init.data?.layout?.tabs[0]?.subTitle}
                   description={init.data?.layout?.tabs[0]?.description}
                 />
